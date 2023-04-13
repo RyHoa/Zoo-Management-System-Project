@@ -3,18 +3,6 @@ using System.Collections.Generic;
 
 namespace ZooManagementSystem.Entity
 {
-
-    // probably not right:
-    class ItemList
-    {
-        private var items = new List<Item>();
-        
-        public List<Items> Items
-        {
-            //set { items = value;}
-            get { return items;}
-        }
-    }
     class Account
     {   
         public Account(int _usn, string _fname, string _lname, string _role, string _password)
