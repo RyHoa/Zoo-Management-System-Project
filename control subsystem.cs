@@ -1,13 +1,10 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
+using ZooManagementSystem.Entity;
+using ZooManagementSystem.Boundary;
 
-namespace control
+
+namespace ZooManagementSystem.Control
 {
     class DBConnector
     {

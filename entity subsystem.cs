@@ -1,151 +1,61 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
 
-namespace entity
+namespace ZooManagementSystem.Entity
 {
-    class ItemList
-    {
-        
-    }
     class Account
-    {
-
-        //ask if we are storing user input information into the account object, if we do we need error checking, if not then delete all the set stuff
-
-        public Account(int usn, string name, string role, string pwd)
+    {   
+        public Account(int _usn, string _fname, string _lname, string _role, string _password)
         {
-            Usn = usn;
-            Name = name;
-            Role = role;
-            Password = pwd;
-        }
+            Usn = _usn;
+            Name = _fname + " " + _lname;
+            Role = _role;
+            Password = _password;
+        }      
 
         private int usn;
-        public int Usn //ask if he wants these get /set methods or actual get set method
-        { 
-            get 
-            { 
-                return usn; 
-            } 
-            set
-            {
-                if (value >= 0 && value <= 9999)
-                {
-                    usn = value;
-                }
-                else
-                {
-                    throw new Exception("Error: Something went wrong.");
-                }
-            } 
-        }
-        private string role;
+        public int Usn {get;set;}
+
+        private string role;        
+        public string Role {get;set;}
         
-        public string Role 
-        { 
-            get 
-            { 
-                return role; 
-            } 
-            set 
-            { 
-                if(value.ToLower() == "admin")
-                {
-                    role = value;
-                }
-                else if (value.ToLower() == "employee")
-                {
-                    role = value;
-                }
-                else
-                {
-                    throw new Exception("Error: Something went wrong.");
-                }
-            } 
-        }
-        private string password
-        ;
-        public string Password 
-        { 
-            get 
-            { 
-                return password; 
-            } 
-            set 
-            { 
-                password = value; 
-            }
-        }
+        private string password;
+        public string Password {get;set;}  
 
-        //use string builder class to touch up, combine the first name and last name
         private string name;
-        public string Name //change on class diagram to have first name and last name
-        {
-            get 
-            { 
-                return name; 
-            }
-            set 
-            { 
-                Regex reg = new Regex(value);
-
-                if (!(reg.IsMatch(@"\d")))
-                {
-                    name = value;
-                }
-                else
-                {
-                    throw new Exception("Error: Something went wrong.");
-
-                }
-                
-            }
-        }
-
-
+        public string Name {get;set;}    
     }
     class Task
     {
-        public Task(int taskID, int animalID, int taskType, int employeeID)
+        public Task(int _taskID, int _animalID, int _taskType, int _employeeID)
         {    
-            TaskID = taskID;
-            AnimalID = animalID;
-            TaskType = taskType;
-            EmployeeID = employeeID;
-
-
+            TaskID = _taskID;
+            AnimalID = _animalID;
+            TaskType = _taskType;
+            EmployeeID = _employeeID;
         }
 
         private int taskID;
-        public int TaskID 
-        {
-            get { return taskID; }
-            set 
-            {
-                bool validTaskID = int.TryParse(value, out int );
-                if (validTaskID && input >= 0 && input <= 9999)
-                {
-                    usn = value;
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
+        public int TaskID {get;set;} 
+        
         private int animalID;
+        public int AnimalID {get;set;}
+
         private int taskType;
+        public int TaskType {get;set;}
+
         private int employeeID;
+        public int EmployeeID {get;set;}
     }
     class Animal
     {
+        public Animal(int _animalID)
+        {
+            AnimalID = _animalID;
+        }
+
         private int animalID;
+        public int AnimalID {get;set;}       
         
     }
 }
