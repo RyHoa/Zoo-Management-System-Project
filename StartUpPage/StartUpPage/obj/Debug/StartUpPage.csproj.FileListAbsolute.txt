@@ -1,0 +1,10 @@
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\bin\Debug\StartUpPage.exe.config
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\bin\Debug\StartUpPage.exe
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\bin\Debug\StartUpPage.pdb
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.csproj.AssemblyReference.cache
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.Form1.resources
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.Properties.Resources.resources
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.csproj.GenerateResource.cache
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.csproj.CoreCompileInputs.cache
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.exe
+C:\Users\Eliana Lopez\source\repos\StartUpPage\StartUpPage\obj\Debug\StartUpPage.pdb
