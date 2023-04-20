@@ -18,22 +18,86 @@ namespace ZooManagementSystem.Control
                 SQLiteConnection.CreateFile(@"./zManageDB.db"); 
 
                 //automates the table creation here
-                using(connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
+                using(var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
                 {
                     connection.Open();
 
                     //String for dropping existing table
-                    string dropSql = "@BEGIN TRANSACTION;DROP TABLE IF EXISTS LOG; DROP TABLE IF EXISTS EMPLOYEE; DROP TABLE IF EXISTS TASK; DROP TABLE IF EXISTS ANIMAL; COMMIT;";          
-
+                    string dropSql = @"BEGIN TRANSACTION; 
+                    DROP TABLE IF EXISTS LOG;  
+                    DROP TABLE IF EXISTS EMPLOYEE;  
+                    DROP TABLE IF EXISTS TASK;  
+                    DROP TABLE IF EXISTS ANIMAL; COMMIT;";     
+                    
+                   
+                    
 
 
 
                     //String for creating Tables for the Zoo Management System
-                    string createLogTableQuery = @"CREATE TABLE IF NOT EXISTS log ( lodID INTEGER PRIMARY KEY AUTOINCREMENT, logType TEXT NOT NULL, dateType TEXT NOT NULL)";
-                    string createEmployeeTableQuery;
-                    string createTaskTableQuery;
-                    string AnimalTaskTableQuery;
+
+                    //String to create LOG table
+                    string createLogTableQuery = @"CREATE TABLE IF NOT EXISTS [LOG] ( 
+                    [lodID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    , [logType] TEXT NOT NULL
+                    , [dateType] TEXT NOT NULL
+                    , FOREIGN KEY([empID]) REFERENCE [EMPLOYEE]([empID])
+                    );";
+
+                    //String to create Employee table
+
+                    //Check bout passwd
+                    string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS [EMPLOYEE] (
+                    [empID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    , [passwd] TEXT NOT NULL
+                    , [empType] TEXT NOT NULL
+                    , [firstName] TEXT NOT NULL
+                    , [lastName] TEXT NOT NULL
+                    );";
+
+                    //String to create Task table
+                    string createTaskTableQuery = @"CREATE TABLE IF NOT EXISTS [TASK] (
+                    [tasksID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    , [date] TEXT NOT NULL
+                    , [completion] TEXT NOT NULL
+                    , [taskType] TEXT NOT NULL
+                    , FOREIGN KEY([empID]) REFERENCES [EMPLOYEE]([empID])
+                    , FOREIGN KEY([animalID)] REFERENCES [ANIMAL]([animalID])
+                    );";
+
+                    //String to create Animal table
+                    string createAnimalTableQuery = @"CREATE TABLE IF NOT EXISTS [ANIMAL] (
+                    [animalID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    , [location] TEXT NOT NULL
+                    );";
+
+                    //String to insert information into the tables
+                    //Don't include PK and FK?
+                    //Skip LOG and Task for now?
+                    //Remember to put hash values for password
+                    insertString = @"BEGIN TRANSACTION;
+                    INSERT INTO LOG (logType, dateType) VALUES ();
+                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES (); 
+                    INSERT INTO TASK (date, completion, taskType) VALUES ();
+                    COMMIT;";
+
+
                     
+
+                    using(var command = new SQLiteCommand(connection))
+                    {
+                        command.CommandText = createLogTableQuery;
+                        command.ExecuteNonQuerty();
+                        command.CommandText = createEmployeeTableQuery;
+                        command.ExecuteNonQuerty();
+                        command.CommandText = createTaskTableQuery;
+                        command.ExecuteNonQuerty();
+                        command.CommandText = createAnimalTableQuery;
+                        command.ExecuteNonQuerty();
+                    }
+
+
+
                 }
            }
 
