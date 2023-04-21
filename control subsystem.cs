@@ -15,7 +15,7 @@ namespace ZooManagementSystem.Control
              * 1. Ask about the primary key constraint thing
              * 2. Finish putting hash password
              * 3. Ask what values to store in what tables and if we need to do all the tables
-             * 
+             * 4. Make EMP ID Integer and test it out
              * 
              */
 
