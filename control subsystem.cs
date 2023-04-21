@@ -15,7 +15,7 @@ namespace ZooManagementSystem.Control
              * 1. Ask about the primary key constraint thing
              * 2. Finish putting hash password
              * 3. Ask what values to store in what tables and if we need to do all the tables
-             * 4. Need a way to put program.cs for main class to run?
+             * 
              * 
              */
 
@@ -104,24 +104,29 @@ namespace ZooManagementSystem.Control
 
                 using (var command = new SQLiteCommand(connection))
                 {
+
                     command.CommandText = createLogTableQuery;
                     command.ExecuteNonQuery();
+
                     command.CommandText = createEmployeeTableQuery;
                     command.ExecuteNonQuery();
+
                     command.CommandText = createTaskTableQuery;
                     command.ExecuteNonQuery();
+
                     command.CommandText = createAnimalTableQuery;
                     command.ExecuteNonQuery();
+
                     command.CommandText = insertString;
 
-                    //finish here
+
+
+
+                    //commands to hash password and add it to the Employee Password column
                     string pwd1 = "hi";
                     string pwd2 = "bye";
-
                     int x = pwd1.GetHashCode();
                     int y = pwd2.GetHashCode();
-
-                    //finish here
                     command.Parameters.AddWithValue("$hashpwd1", x);
                     command.Parameters.AddWithValue("$hashpwd2", y);
                     command.ExecuteNonQuery();
@@ -134,14 +139,16 @@ namespace ZooManagementSystem.Control
             }
         }
 
-        //}
-        //public Account getUser(string _usn) { }
-        //public void saveLogin(string _usn, string _time) { }
-        //public ItemList getItems(string _usn) { }
-        //public void save(Task _task) { }
-        //public void setCompleted(int _taskID) { }
-        //public void saveLogout(string _usn, string _time) { }
+        public static Account getUser(string _usn) { }
+
+        public static ItemList getItems(string _usn) { }
+        public static void save(Task _task) { }
+        public static void setCompleted(int _taskID) { }
+
+        public static void saveLogin(string _usn, string _time) { }
+        public static void saveLogout(string _usn, string _time) { }
     }
+
     public class LogoutControl
     {
 
