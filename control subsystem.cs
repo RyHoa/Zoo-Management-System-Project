@@ -2,11 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using SQLiteDemo;
+using ZooManagementSystem.Entity;
+using ZooManagementSystem.Boundary;
 
 
 namespace ZooManagementSystem.Control
 {
-    public static class DBConnector
+
+    public static class Controller
+    {
+        //attributes to include form, list, controller, task
+        //add constructor
+
+        
+
+    }
+
+    public static class DBConnector : Controller
     {
         public static void initializeDB()
         {
@@ -149,25 +161,30 @@ namespace ZooManagementSystem.Control
         public static void saveLogout(string _usn, string _time) { }
     }
 
-    public class LogoutControl
+    public static class LogoutControl : Controller
     {
-
+        public static void logout(string _usn) { }
     }
-    public class addTaskControl
+    public static class addTaskControl : Controller
     {
-
+        public static void submit(Task x) { }
     }
-    public class StartController
+    public static class StartController : Controller
     {
-
+        public static void intiate() { }
     }
 
-    public class UpdateControl
+    public static class UpdateControl : Controller
     {
-
+        //add parameters
+        public static void complete(string, int) { }
     }
-    public class LoginControl
+    public static class LoginControl : Controller
     {
 
+        //add parameters
+        public static void login() { }
+        public static bool login(string, string) { }
+        public static validate(Account, string) { }
     }
 }
