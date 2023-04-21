@@ -1,64 +1,65 @@
 using System;
 using System.Collections.Generic;
-using ZooManagementSystem.Entity;
-using ZooManagementSystem.Boundary;
 using System.Data.SQLite;
+using SQLiteDemo;
 
 
 namespace ZooManagementSystem.Control
 {
     public static class DBConnector
     {
-        public void initializeDB()
+        public static void initializeDB()
         {
 
             /*Things to finish
              * 1. Ask about the primary key constraint thing
              * 2. Finish putting hash password
              * 3. Ask what values to store in what tables and if we need to do all the tables
-             * 
+             * 4. Need a way to put program.cs for main class to run?
              * 
              */
 
 
 
-           //Only creates the DB if the file isn't there 
-           if(!File.Exists(@"./zManageDB.db"))
-           {
-                //May need the actual path but it creates the db file here
-                SQLiteConnection.CreateFile(@"./zManageDB.db"); 
+            //Only creates the DB if the file isn't there 
+            //if (!File.Exists(@"./zManageDB.db"))
+            //{
+            //May need the actual path but it creates the db file here
+            SQLiteConnection.CreateFile(@"./zManageDB.db");
+            System.Console.WriteLine("DB file is created");
 
-                //automates the table creation here
-                using(var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
-                {
-                    connection.Open();
+            //automates the table creation here
+            using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
+            {
+                connection.Open();
 
-                    //String for dropping existing table
-                    string dropSql = @"BEGIN TRANSACTION; 
+                //String for dropping existing table
+                string dropSql = @"BEGIN TRANSACTION; 
                     DROP TABLE IF EXISTS LOG;  
                     DROP TABLE IF EXISTS EMPLOYEE;  
                     DROP TABLE IF EXISTS TASK;  
-                    DROP TABLE IF EXISTS ANIMAL; COMMIT;";     
-                    
-                   
-                    
+                    DROP TABLE IF EXISTS ANIMAL; COMMIT;";
 
 
 
-                    //String for creating Tables for the Zoo Management System
 
-                    //String to create LOG table
-                    string createLogTableQuery = @"CREATE TABLE IF NOT EXISTS [LOG] ( 
+
+
+                //String for creating Tables for the Zoo Management System
+
+                //String to create LOG table
+                string createLogTableQuery = @"CREATE TABLE IF NOT EXISTS [LOG] ( 
                     [lodID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                     , [logType] TEXT NOT NULL
                     , [dateType] TEXT NOT NULL
-                    , FOREIGN KEY([empID]) REFERENCE [EMPLOYEE]([empID])
+                    , [empID] TEXT NOT NULL
+                    , FOREIGN KEY([empID]) REFERENCES [EMPLOYEE]([empID])
                     );";
 
-                    //String to create Employee table
+                //String to create Employee table
 
-                    //Check bout passwd
-                    string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS [EMPLOYEE] (
+                //Check bout passwd
+                string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS [EMPLOYEE] (
                     [empID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                     , [passwd] TEXT NOT NULL
                     , [empType] TEXT NOT NULL
@@ -66,80 +67,84 @@ namespace ZooManagementSystem.Control
                     , [lastName] TEXT NOT NULL
                     );";
 
-                    //String to create Task table
-                    string createTaskTableQuery = @"CREATE TABLE IF NOT EXISTS [TASK] (
+                //String to create Task table
+                string createTaskTableQuery = @"CREATE TABLE IF NOT EXISTS [TASK] (
                     [tasksID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                     , [date] TEXT NOT NULL
                     , [completion] TEXT NOT NULL
                     , [taskType] TEXT NOT NULL
+                    , [empID] TEXT NOT NULL
+                    , [animalID] TEXT NOT NULL
                     , FOREIGN KEY([empID]) REFERENCES [EMPLOYEE]([empID])
-                    , FOREIGN KEY([animalID)] REFERENCES [ANIMAL]([animalID])
+                    , FOREIGN KEY([animalID]) REFERENCES [ANIMAL]([animalID])
                     );";
 
-                    //String to create Animal table
-                    string createAnimalTableQuery = @"CREATE TABLE IF NOT EXISTS [ANIMAL] (
+                //String to create Animal table
+                string createAnimalTableQuery = @"CREATE TABLE IF NOT EXISTS [ANIMAL] (
                     [animalID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                     , [location] TEXT NOT NULL
                     );";
 
-                    //String to insert information into the tables
-                    //Don't include PK and FK?
-                    //Skip LOG and Task for now?
-                    //Remember to put hash values for password
+                //String to insert information into the tables
+                //Don't include PK and FK?
+                //Skip LOG and Task for now?
+                //Remember to put hash values for password
 
-                    //not done need values and why do we not insert primary keys?
-                    string insertString = @"BEGIN TRANSACTION;
-                    INSERT INTO LOG (logType, dateType) VALUES ();
-                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES (); 
-                    INSERT INTO TASK (date, completion, taskType) VALUES ();
-                    INSERT INTO ANIMAL (location) VALUES ();
+                //not done need values and why do we not insert primary keys?
+                string insertString = @"BEGIN TRANSACTION;
+                    INSERT INTO LOG (logType, dateType, empID) VALUES ('Admin', '05', '1');
+                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd1, 'Admin', 'Ryan', 'Hoang'); 
+                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd2, 'Admin', 'Andrew', 'Hoang'); 
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('06', 'T', 'Feed','1','2');
+                    INSERT INTO ANIMAL (location) VALUES ('here');
                     COMMIT;";
 
 
-                    
-
-                    using(var command = new SQLiteCommand(connection))
-                    {
-                        command.CommandText = createLogTableQuery;
-                        command.ExecuteNonQuerty();
-                        command.CommandText = createEmployeeTableQuery;
-                        command.ExecuteNonQuerty();
-                        command.CommandText = createTaskTableQuery;
-                        command.ExecuteNonQuerty();
-                        command.CommandText = createAnimalTableQuery;
-                        command.ExecuteNonQuerty();
-                        command.CommandText = insertString;
-
-                        //finish here
-                        string pwd1 = "";
-                        string pwd2 = "";
-
-                        int x = pwd1.GetHashCode();
-                        int y = pwd2.GetHashCode();
-
-                        //finish here
-                        command.Parameters.AddWithValue("", x);
-                        command.Parameters.AddWithValue("", y);
-                        command.ExecuteNonQuerty();
-                        connection.Close();
-                    }
 
 
+                using (var command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = createLogTableQuery;
+                    command.ExecuteNonQuery();
+                    command.CommandText = createEmployeeTableQuery;
+                    command.ExecuteNonQuery();
+                    command.CommandText = createTaskTableQuery;
+                    command.ExecuteNonQuery();
+                    command.CommandText = createAnimalTableQuery;
+                    command.ExecuteNonQuery();
+                    command.CommandText = insertString;
 
+                    //finish here
+                    string pwd1 = "hi";
+                    string pwd2 = "bye";
+
+                    int x = pwd1.GetHashCode();
+                    int y = pwd2.GetHashCode();
+
+                    //finish here
+                    command.Parameters.AddWithValue("$hashpwd1", x);
+                    command.Parameters.AddWithValue("$hashpwd2", y);
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
                 }
-           }
 
+
+
+            }
         }
-        public Account getUser(string _usn) {}
-        public void saveLogin(string _usn, string _time) {}
-        public ItemList getItems(string _usn){}
-        public void save(Task _task){}
-        public void setCompleted(int _taskID) {}
-        public void saveLogout(string _usn, string _time){}
+
+        //}
+        //public Account getUser(string _usn) { }
+        //public void saveLogin(string _usn, string _time) { }
+        //public ItemList getItems(string _usn) { }
+        //public void save(Task _task) { }
+        //public void setCompleted(int _taskID) { }
+        //public void saveLogout(string _usn, string _time) { }
     }
     public class LogoutControl
     {
-        
+
     }
     public class addTaskControl
     {
@@ -149,16 +154,13 @@ namespace ZooManagementSystem.Control
     {
 
     }
-    public class addTaskControl
-    {
 
-    }
     public class UpdateControl
     {
 
     }
     public class LoginControl
     {
-        
+
     }
 }
