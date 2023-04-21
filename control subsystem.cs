@@ -151,7 +151,10 @@ namespace ZooManagementSystem.Control
             }
         }
 
-        public static Account getUser(string _usn) { }
+        public static Account getUser(string _usn) 
+        { 
+
+        }
 
         public static ItemList getItems(string _usn) { }
         public static void save(Task _task) { }
@@ -163,28 +166,55 @@ namespace ZooManagementSystem.Control
 
     public static class LogoutControl : Controller
     {
-        public static void logout(string _usn) { }
+        public static void logout(string _usn) 
+        { 
+            DBConnector.saveLogout(usn, time);
+        }
     }
     public static class addTaskControl : Controller
     {
-        public static void submit(Task x) { }
+        public static void submit(Task x) 
+        {
+            DBConnector.save(x);
+        }
     }
     public static class StartController : Controller
     {
-        public static void intiate() { }
+        public static void initiate() 
+        { 
+            DBConnector.initializeDB();
+        }
     }
 
     public static class UpdateControl : Controller
     {
-        //add parameters
-        public static void complete(string, int) { }
+        public static void complete(string usn, int taskID) 
+        { 
+            DBConnector.setCompleted(taskID);
+            var items = DBConnector.getItems(usn);
+        }
     }
     public static class LoginControl : Controller
     {
-
-        //add parameters
-        public static void login() { }
-        public static bool login(string, string) { }
-        public static validate(Account, string) { }
+        public static void login() 
+        { 
+            //display login form
+        }
+        public static void login(string usn, string pwd) 
+        { 
+            pwd = pwd.GetHashCode();
+            Account user = DBConnector.getUser(usn);
+            bool isValid = validate(user, pwd);
+            if (isValid){
+                // go through
+            }
+            else{
+                // display error
+            }
+        }
+        public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool
+        { 
+            return user.Password == pwd;
+        }
     }
 }
