@@ -11,6 +11,17 @@ namespace ZooManagementSystem.Control
     {
         public void initializeDB()
         {
+
+            /*Things to finish
+             * 1. Ask about the primary key constraint thing
+             * 2. Finish putting hash password
+             * 3. Ask what values to store in what tables and if we need to do all the tables
+             * 
+             * 
+             */
+
+
+
            //Only creates the DB if the file isn't there 
            if(!File.Exists(@"./zManageDB.db"))
            {
@@ -75,10 +86,13 @@ namespace ZooManagementSystem.Control
                     //Don't include PK and FK?
                     //Skip LOG and Task for now?
                     //Remember to put hash values for password
-                    insertString = @"BEGIN TRANSACTION;
+
+                    //not done need values and why do we not insert primary keys?
+                    string insertString = @"BEGIN TRANSACTION;
                     INSERT INTO LOG (logType, dateType) VALUES ();
                     INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES (); 
                     INSERT INTO TASK (date, completion, taskType) VALUES ();
+                    INSERT INTO ANIMAL (location) VALUES ();
                     COMMIT;";
 
 
@@ -94,6 +108,20 @@ namespace ZooManagementSystem.Control
                         command.ExecuteNonQuerty();
                         command.CommandText = createAnimalTableQuery;
                         command.ExecuteNonQuerty();
+                        command.CommandText = insertString;
+
+                        //finish here
+                        string pwd1 = "";
+                        string pwd2 = "";
+
+                        int x = pwd1.GetHashCode();
+                        int y = pwd2.GetHashCode();
+
+                        //finish here
+                        command.Parameters.AddWithValue("", x);
+                        command.Parameters.AddWithValue("", y);
+                        command.ExecuteNonQuerty();
+                        connection.Close();
                     }
 
 
