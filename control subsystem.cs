@@ -160,7 +160,24 @@ namespace ZooManagementSystem.Control
         public static void save(Task _task) { }
         public static void setCompleted(int _taskID) { }
 
-        public static void saveLogin(string _usn, string _time) { }
+        public static void saveLogin(string _usn, string _time) 
+        { 
+            using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
+            {
+                connection.Open();
+                string insert = @"INSERT INTO LOG VALUES($logType, $dateType, $empID);"
+                using (SQLiteCommand command = new SQLiteCommand())
+                {
+                    command.Connection = connection; //what does this do?
+                    command.CommandText = insert;
+                    command.Parameters.AddWithValue("$logType", "login");
+                    command.Parameters.AddWithValue("$dateType", _time);
+                    command.Parameters.AddWithValue("empID", _usn);
+                    command.ExecuteNonQuery();
+                }
+            }        
+        
+        }
         public static void saveLogout(string _usn, string _time) { }
     }
 
@@ -200,15 +217,21 @@ namespace ZooManagementSystem.Control
         { 
             //display login form
         }
-        public static void login(string usn, string pwd) 
+        public static void login(string usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
         { 
             pwd = pwd.GetHashCode();
             Account user = DBConnector.getUser(usn);
             bool isValid = validate(user, pwd);
-            if (isValid){
+            if (isValid)
+            {
                 // go through
+                //not done
+                DateTime currTime = DateTime.Now;
+                string time = currTime.ToString();
+                DBConnector.saveLogin(usn, time);
             }
-            else{
+            else
+            {
                 // display error
             }
         }
