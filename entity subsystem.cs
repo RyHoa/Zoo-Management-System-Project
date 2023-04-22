@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace ZooManagementSystem.Entity
+namespace ZooManagementSystemEntity
 {
-    class Account
-    {   
+    public class Account
+    {
+        public Account() { }
         public Account(int _usn, string _fname, string _lname, string _role, string _password)
         {
             Usn = _usn;
@@ -25,7 +26,7 @@ namespace ZooManagementSystem.Entity
         private string name;
         public string Name {get;set;}    
     }
-    class Task
+    public class Task
     {
         public Task(int _taskID, int _animalID, int _taskType, int _employeeID)
         {    
@@ -47,7 +48,7 @@ namespace ZooManagementSystem.Entity
         private int employeeID;
         public int EmployeeID {get;set;}
     }
-    class Animal
+    public class Animal
     {
         public Animal(int _animalID)
         {

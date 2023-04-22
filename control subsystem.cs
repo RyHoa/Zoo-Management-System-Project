@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using ZooManagementSystem.Entity;
-using ZooManagementSystem.Boundary;
+using ZooManagementSystemEntity;
+using ZooManagementSystemBoundary;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
-namespace ZooManagementSystem.Control
+namespace ZooManagementSystemControl
 {
 
     public class Controller
     {
         //attributes to include form, list, controller, task
         //add constructor
-
         
 
     }
@@ -69,7 +69,7 @@ namespace ZooManagementSystem.Control
 
                 //String to create Employee table
 
-
+                // go back into class diagram and change -usn:string to -usn:int
                 string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS [EMPLOYEE] (
                     [empID] INTEGER PRIMARY KEY UNIQUE NOT NULL CHECK ([empID]>999 AND [empID]<10000) 
                     , [passwd] TEXT NOT NULL
@@ -150,17 +150,39 @@ namespace ZooManagementSystem.Control
 
             }
         }
-
-        //public static Account getUser(string _usn) 
-        //{
-            
-        //}
+    
+    public static Account getUser(int _usn)
+    {
+            Account acct = new Account();
+            using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand(connection))
+                {
+                    string queryAcct = @"SELECT * FROM EMPLOYEE WHERE (empID == $usn)";
+                    command.CommandText = queryAcct;
+                    command.Parameters.AddWithValue("$usn", _usn);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            acct.Usn = reader.GetInt32(0);
+                            acct.Password = reader.GetString(1);
+                            acct.Role = reader.GetString(2);
+                            acct.Name = (reader.GetString(3) + " " + reader.GetString(4));
+                        }
+                    }
+                    connection.Close();
+                }
+                return acct;
+            }
+    }
 
         //public static ItemList getItems(string _usn) { }
         //public static void save(Task _task) { }
         public static void setCompleted(int _taskID) { }
 
-        public static void saveLogin(string _usn, string _time) 
+        public static void saveLogin(int _usn, string _time) 
         { 
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
@@ -177,7 +199,7 @@ namespace ZooManagementSystem.Control
             }        
         
         }
-        public static void saveLogout(string _usn, string _time) 
+        public static void saveLogout(int _usn, string _time) 
         {
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
@@ -192,15 +214,12 @@ namespace ZooManagementSystem.Control
                     command.ExecuteNonQuery();
                 }
             }
-
-
-
         }
     }
 
     public class LogoutControl : Controller
     {
-        public static void logout(string _usn) 
+        public static void logout(int _usn) 
         { 
             DateTime time = DateTime.Now;
             string strTime = time.ToString();
@@ -224,7 +243,7 @@ namespace ZooManagementSystem.Control
 
     public class UpdateControl : Controller
     {
-        public static void complete(string usn, int taskID) 
+        public static void complete(int usn, int taskID) 
         { 
             DBConnector.setCompleted(taskID);
             //var items = DBConnector.getItems(usn);
@@ -236,27 +255,33 @@ namespace ZooManagementSystem.Control
         { 
             //display login form
         }
-        //public static void login(string usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
-        //{
-        //    int hashedPwd = pwd.GetHashCode();
-        //    Account user = DBConnector.getUser(usn);
-        //    bool isValid = validate(user, hashedPwd);
-        //    if (isValid)
-        //    {
-        //        // go through
-        //        // not done
-        //        DateTime currTime = DateTime.Now;
-        //        string time = currTime.ToString();
-        //        DBConnector.saveLogin(usn, time);
-        //    }
-        //    else
-        //    {
-        //        // display error
-        //    }
-        //}
-        //public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool
-        //{ 
-        //    return user.Password == pwd;
-        //}
+        public static void login(int usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
+        {
+            string hashedPwd = pwd.GetHashCode().ToString();
+            Account user = DBConnector.getUser(usn);
+            if (validate(user, hashedPwd))
+            {
+                DateTime currTime = DateTime.Now;
+                string time = currTime.ToString();
+                DBConnector.saveLogin(usn, time);
+
+                // Eliana's scratch work
+                //we need a way to differentiate account type 
+                // assuming every user is an admin ( for testing ):
+                //addTaskMenu initialAddTask = new addTaskMenu();
+                //initialAddTask.Activate();
+                //close login form also
+                Console.WriteLine("Pass"); //delete later
+            }
+            else
+            {
+                Console.WriteLine("Error"); //delete later
+                // display error
+            }
+        }
+        public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool
+        {
+            return user.Password == pwd; 
+        }
     }
 }

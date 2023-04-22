@@ -15,3 +15,11 @@ C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\System.Data
 C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.CopyComplete
 C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.exe
 C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.pdb
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\en-US\ConsoleApplication.resources.dll
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.resources
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.LogoutForm.resources
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.LoginForm.resources
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.StartupMenu.resources
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.en-US.resources
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.GenerateResource.cache
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\en-US\ConsoleApplication.resources.dll
