@@ -237,13 +237,13 @@ namespace ZooManagementSystem.Control
         }
         public static void login(string usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
         {
-            int hashPwd = pwd.GetHashCode();
+            int hashedPwd = pwd.GetHashCode();
             Account user = DBConnector.getUser(usn);
-            bool isValid = validate(user, pwd);
+            bool isValid = validate(user, hashedPwd);
             if (isValid)
             {
                 // go through
-                //not done
+                // not done
                 DateTime currTime = DateTime.Now;
                 string time = currTime.ToString();
                 DBConnector.saveLogin(usn, time);
