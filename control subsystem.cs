@@ -103,10 +103,11 @@ namespace ZooManagementSystem.Control
                 //Remember to put hash values for password
 
                 //not done need values and why do we not insert primary keys?
+                //prob dont need the log stuff
                 string insertString = @"BEGIN TRANSACTION;
-                    INSERT INTO LOG (logType, dateType, empID) VALUES ('Admin', '05', '1');
+                    INSERT INTO LOG (logType, dateType, empID) VALUES ('logout', '05', '1000');
                     INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd1, 'Admin', 'Ryan', 'Hoang'); 
-                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd2, 'Admin', 'Andrew', 'Hoang'); 
+                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd2, 'Employee', 'Andrew', 'Hoang'); 
                     INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('06', 'T', 'Feed','1','2');
                     INSERT INTO ANIMAL (location) VALUES ('here');
                     COMMIT;";
@@ -165,7 +166,7 @@ namespace ZooManagementSystem.Control
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
-                string insert = @"INSERT INTO LOG VALUES($logType, $dateType, $empID);";
+                string insert = @"INSERT INTO LOG (logType, dateType, empID) VALUES ($logType, $dateType, $empID);";
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {                    
                     command.CommandText = insert;
@@ -182,7 +183,7 @@ namespace ZooManagementSystem.Control
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
-                string insert = @"INSERT INTO LOG VALUES($logType, $dateType, $empID);";
+                string insert = @"INSERT INTO LOG (logType, dateType, empID) VALUES ($logType, $dateType, $empID);";
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText = insert;
@@ -235,8 +236,8 @@ namespace ZooManagementSystem.Control
             //display login form
         }
         public static void login(string usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
-        { 
-            pwd = pwd.GetHashCode();
+        {
+            int hashPwd = pwd.GetHashCode();
             Account user = DBConnector.getUser(usn);
             bool isValid = validate(user, pwd);
             if (isValid)
