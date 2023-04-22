@@ -165,10 +165,9 @@ namespace ZooManagementSystem.Control
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
-                string insert = @"INSERT INTO LOG VALUES($logType, $dateType, $empID);"
-                using (SQLiteCommand command = new SQLiteCommand())
-                {
-                    command.Connection = connection; //what does this do?
+                string insert = @"INSERT INTO LOG VALUES($logType, $dateType, $empID);";
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {                    
                     command.CommandText = insert;
                     command.Parameters.AddWithValue("$logType", "login");
                     command.Parameters.AddWithValue("$dateType", _time);
@@ -178,7 +177,25 @@ namespace ZooManagementSystem.Control
             }        
         
         }
-        public static void saveLogout(string _usn, string _time) { }
+        public static void saveLogout(string _usn, string _time) 
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
+            {
+                connection.Open();
+                string insert = @"INSERT INTO LOG VALUES($logType, $dateType, $empID);";
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = insert;
+                    command.Parameters.AddWithValue("$logType", "logout");
+                    command.Parameters.AddWithValue("$dateType", _time);
+                    command.Parameters.AddWithValue("empID", _usn);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
+
+        }
     }
 
     public static class LogoutControl : Controller
