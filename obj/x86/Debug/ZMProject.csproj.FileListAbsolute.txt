@@ -1,0 +1,17 @@
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.AssemblyReference.cache
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.SuggestedBindingRedirects.cache
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.CoreCompileInputs.cache
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\ConsoleApplication.exe.config
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\ConsoleApplication.exe
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\ConsoleApplication.pdb
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\EntityFramework.dll
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\System.Data.SQLite.dll
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\EntityFramework.xml
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Elijah\source\repos\zoo-management-system-project\bin\Debug\System.Data.SQLite.xml
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.CopyComplete
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.exe
+C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.pdb

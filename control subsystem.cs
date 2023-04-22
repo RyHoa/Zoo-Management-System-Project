@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using SQLiteDemo;
 using ZooManagementSystem.Entity;
 using ZooManagementSystem.Boundary;
-
+using System.Security.Cryptography;
 
 namespace ZooManagementSystem.Control
 {
 
-    public static class Controller
+    public class Controller
     {
         //attributes to include form, list, controller, task
         //add constructor
@@ -18,7 +17,7 @@ namespace ZooManagementSystem.Control
 
     }
 
-    public static class DBConnector : Controller
+    public class DBConnector : Controller
     {
         public static void initializeDB()
         {
@@ -152,13 +151,13 @@ namespace ZooManagementSystem.Control
             }
         }
 
-        public static Account getUser(string _usn) 
-        { 
+        //public static Account getUser(string _usn) 
+        //{
+            
+        //}
 
-        }
-
-        public static ItemList getItems(string _usn) { }
-        public static void save(Task _task) { }
+        //public static ItemList getItems(string _usn) { }
+        //public static void save(Task _task) { }
         public static void setCompleted(int _taskID) { }
 
         public static void saveLogin(string _usn, string _time) 
@@ -199,21 +198,23 @@ namespace ZooManagementSystem.Control
         }
     }
 
-    public static class LogoutControl : Controller
+    public class LogoutControl : Controller
     {
         public static void logout(string _usn) 
         { 
-            DBConnector.saveLogout(usn, time);
+            DateTime time = DateTime.Now;
+            string strTime = time.ToString();
+            DBConnector.saveLogout(_usn, strTime);
         }
     }
-    public static class addTaskControl : Controller
+    public class addTaskControl : Controller
     {
-        public static void submit(Task x) 
-        {
-            DBConnector.save(x);
-        }
+        //public static void submit(Task x) 
+        //{
+        //    DBConnector.save(x);
+        //}
     }
-    public static class StartController : Controller
+    public class StartController : Controller
     {
         public static void initiate() 
         { 
@@ -221,41 +222,41 @@ namespace ZooManagementSystem.Control
         }
     }
 
-    public static class UpdateControl : Controller
+    public class UpdateControl : Controller
     {
         public static void complete(string usn, int taskID) 
         { 
             DBConnector.setCompleted(taskID);
-            var items = DBConnector.getItems(usn);
+            //var items = DBConnector.getItems(usn);
         }
     }
-    public static class LoginControl : Controller
+    public class LoginControl : Controller
     {
         public static void login() 
         { 
             //display login form
         }
-        public static void login(string usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
-        {
-            int hashedPwd = pwd.GetHashCode();
-            Account user = DBConnector.getUser(usn);
-            bool isValid = validate(user, hashedPwd);
-            if (isValid)
-            {
-                // go through
-                // not done
-                DateTime currTime = DateTime.Now;
-                string time = currTime.ToString();
-                DBConnector.saveLogin(usn, time);
-            }
-            else
-            {
-                // display error
-            }
-        }
-        public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool
-        { 
-            return user.Password == pwd;
-        }
+        //public static void login(string usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
+        //{
+        //    int hashedPwd = pwd.GetHashCode();
+        //    Account user = DBConnector.getUser(usn);
+        //    bool isValid = validate(user, hashedPwd);
+        //    if (isValid)
+        //    {
+        //        // go through
+        //        // not done
+        //        DateTime currTime = DateTime.Now;
+        //        string time = currTime.ToString();
+        //        DBConnector.saveLogin(usn, time);
+        //    }
+        //    else
+        //    {
+        //        // display error
+        //    }
+        //}
+        //public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool
+        //{ 
+        //    return user.Password == pwd;
+        //}
     }
 }
