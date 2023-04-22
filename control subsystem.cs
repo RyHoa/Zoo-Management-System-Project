@@ -56,22 +56,22 @@ namespace ZooManagementSystem.Control
 
 
 
-                //String for creating Tables for the Zoo Management System
+                // Table initialization
 
                 //String to create LOG table
                 string createLogTableQuery = @"CREATE TABLE IF NOT EXISTS [LOG] ( 
-                    [lodID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    [logID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                     , [logType] TEXT NOT NULL
-                    , [dateType] TEXT NOT NULL
+                    , [dateTime] TEXT NOT NULL
                     , [empID] TEXT NOT NULL
                     , FOREIGN KEY([empID]) REFERENCES [EMPLOYEE]([empID])
                     );";
 
                 //String to create Employee table
 
-                //Check bout passwd
+
                 string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS [EMPLOYEE] (
-                    [empID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    [empID] INTEGER PRIMARY KEY UNIQUE NOT NULL CHECK ([empID]>999 AND [empID]<10000) 
                     , [passwd] TEXT NOT NULL
                     , [empType] TEXT NOT NULL
                     , [firstName] TEXT NOT NULL
@@ -80,12 +80,12 @@ namespace ZooManagementSystem.Control
 
                 //String to create Task table
                 string createTaskTableQuery = @"CREATE TABLE IF NOT EXISTS [TASK] (
-                    [tasksID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+                    [taskID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
                     , [date] TEXT NOT NULL
-                    , [completion] TEXT NOT NULL
+                    , [completion] BOOL NOT NULL
                     , [taskType] TEXT NOT NULL
-                    , [empID] TEXT NOT NULL
-                    , [animalID] TEXT NOT NULL
+                    , [empID] INTEGER NOT NULL
+                    , [animalID] INTEGER NOT NULL
                     , FOREIGN KEY([empID]) REFERENCES [EMPLOYEE]([empID])
                     , FOREIGN KEY([animalID]) REFERENCES [ANIMAL]([animalID])
                     );";
@@ -104,11 +104,11 @@ namespace ZooManagementSystem.Control
                 //not done need values and why do we not insert primary keys?
                 //prob dont need the log stuff
                 string insertString = @"BEGIN TRANSACTION;
-                    INSERT INTO LOG (logType, dateType, empID) VALUES ('logout', '05', '1000');
-                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd1, 'Admin', 'Ryan', 'Hoang'); 
-                    INSERT INTO EMPLOYEE (passwd, empType, firstName, lastName) VALUES ($hashpwd2, 'Employee', 'Andrew', 'Hoang'); 
-                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('06', 'T', 'Feed','1','2');
-                    INSERT INTO ANIMAL (location) VALUES ('here');
+                    INSERT INTO LOG (logType, dateTime, empID) VALUES ('logout', '2021-02-05', 1000);
+                    INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1000, $hashpwd1, 'Admin', 'Ryan', 'Hoang'); 
+                    INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1001, $hashpwd2, 'Employee', 'Andrew', 'Hoang'); 
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('2022-09-01', True, 'Feed', 1001, 1);
+                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 001', 1);
                     COMMIT;";
 
 
@@ -165,12 +165,12 @@ namespace ZooManagementSystem.Control
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
-                string insert = @"INSERT INTO LOG (logType, dateType, empID) VALUES ($logType, $dateType, $empID);";
+                string insert = @"INSERT INTO LOG (logType, dateTime, empID) VALUES ($logType, $dateTime, $empID);";
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {                    
                     command.CommandText = insert;
                     command.Parameters.AddWithValue("$logType", "login");
-                    command.Parameters.AddWithValue("$dateType", _time);
+                    command.Parameters.AddWithValue("$dateTime", _time);
                     command.Parameters.AddWithValue("empID", _usn);
                     command.ExecuteNonQuery();
                 }
@@ -182,12 +182,12 @@ namespace ZooManagementSystem.Control
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
-                string insert = @"INSERT INTO LOG (logType, dateType, empID) VALUES ($logType, $dateType, $empID);";
+                string insert = @"INSERT INTO LOG (logType, dateTime, empID) VALUES ($logType, $dateTime, $empID);";
                 using (SQLiteCommand command = new SQLiteCommand(connection))
                 {
                     command.CommandText = insert;
                     command.Parameters.AddWithValue("$logType", "logout");
-                    command.Parameters.AddWithValue("$dateType", _time);
+                    command.Parameters.AddWithValue("$dateTime", _time);
                     command.Parameters.AddWithValue("empID", _usn);
                     command.ExecuteNonQuery();
                 }
