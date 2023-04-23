@@ -25,6 +25,7 @@ namespace ZooManagementSystemBoundary
         {
             this.Close();           // close the startup page
             LoginForm loginform = new LoginForm();
+
             Application.Run(loginform);   // load login form
         }
     }

@@ -26,7 +26,21 @@ namespace ZooManagementSystemBoundary
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            //which button is this?
 
+        }
+
+
+        
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+           
+            
+            LoginControl.login(Convert.ToInt32(txtbxEmpID.Text), txtbxPass.Text);
+            
+            
+            //need to start moving to next form based on admin or employee
+            //need to display error
         }
     }
 }

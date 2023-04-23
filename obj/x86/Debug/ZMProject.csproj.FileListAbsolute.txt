@@ -23,3 +23,28 @@ C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooMana
 C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.en-US.resources
 C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.GenerateResource.cache
 C:\Users\Elijah\source\repos\zoo-management-system-project\obj\x86\Debug\en-US\ConsoleApplication.resources.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\ConsoleApplication.exe.config
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\ConsoleApplication.exe
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\ConsoleApplication.pdb
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\en-US\ConsoleApplication.resources.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\EntityFramework.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\System.Data.SQLite.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\EntityFramework.xml
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\bin\Debug\System.Data.SQLite.xml
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.AssemblyReference.cache
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.resources
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.LogoutForm.resources
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.LoginForm.resources
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.StartupMenu.resources
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.en-US.resources
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.GenerateResource.cache
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.CoreCompileInputs.cache
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\en-US\ConsoleApplication.resources.dll
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.CopyComplete
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.exe
+C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.pdb

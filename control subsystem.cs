@@ -5,6 +5,7 @@ using ZooManagementSystemEntity;
 using ZooManagementSystemBoundary;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace ZooManagementSystemControl
 {
@@ -13,6 +14,7 @@ namespace ZooManagementSystemControl
     {
         //attributes to include form, list, controller, task
         //add constructor
+        LoginForm loginForm = new LoginForm();
         
 
     }
@@ -272,6 +274,22 @@ namespace ZooManagementSystemControl
                 //initialAddTask.Activate();
                 //close login form also
                 Console.WriteLine("Pass"); //delete later
+                Application.Exit();
+                if(user.Role == "Admin")
+                {
+                    System.Console.WriteLine("test");
+                    addTaskMenu initialAddTask = new addTaskMenu();
+                    initialAddTask.ShowDialog();
+                    //initialAddTask.Activate();
+                    //Application.Run(initialAddTask);
+                }
+                else if(user.Role == "Employee")
+                {
+                    //open updateTaskMenu
+                }
+                
+
+
             }
             else
             {
