@@ -74,15 +74,6 @@ namespace ZooManagementSystemBoundary
             // do nothing
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            // show logout page
-            
-            LogoutForm logoutform = new LogoutForm(); // create new logout page
-            this.Close();             // close addtask page
-            Application.Run(logoutform);        // run logout page
-        }
-
         private void addTaskCal_DateChanged(object sender, DateRangeEventArgs e)
         {
             // do nothing
@@ -91,6 +82,15 @@ namespace ZooManagementSystemBoundary
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            // show logout page
+
+            LogoutForm logoutform = new LogoutForm(); // create new logout page
+            this.Close();             // close addtask page
+            logoutform.Show();        // run logout page
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ZooManagementSystemEntity
+namespace ZooManagementSystemEntity                 // change stuff in here according to feedback! :D
 {
     public class Account
     {

@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ErrorMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -93,11 +94,24 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Employee Login";
             // 
+            // ErrorMessage
+            // 
+            this.ErrorMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrorMessage.ForeColor = System.Drawing.Color.Red;
+            this.ErrorMessage.Location = new System.Drawing.Point(309, 134);
+            this.ErrorMessage.Name = "ErrorMessage";
+            this.ErrorMessage.Size = new System.Drawing.Size(161, 43);
+            this.ErrorMessage.TabIndex = 18;
+            this.ErrorMessage.Text = "Error! Incorrect Employee ID or Password. Please Try Again.";
+            this.ErrorMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ErrorMessage.Visible = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ErrorMessage);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtbxPass);
             this.Controls.Add(this.txtbxEmpID);
@@ -119,5 +133,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ErrorMessage;
     }
 }

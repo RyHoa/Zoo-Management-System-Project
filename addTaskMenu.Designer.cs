@@ -111,6 +111,7 @@
             resources.ApplyResources(this.btnLogout, "btnLogout");
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnSubmitTask
             // 
@@ -125,7 +126,7 @@
             this.addTaskCal.MinDate = new System.DateTime(2023, 4, 17, 0, 0, 0, 0);
             this.addTaskCal.Name = "addTaskCal";
             // 
-            // formAddTask_1
+            // addTaskMenu
             // 
             this.AcceptButton = this.btnSubmitTask;
             resources.ApplyResources(this, "$this");
@@ -141,7 +142,7 @@
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnSubmitTask);
             this.Controls.Add(this.addTaskCal);
-            this.Name = "formAddTask_1";
+            this.Name = "addTaskMenu";
             this.ResumeLayout(false);
             this.PerformLayout();
 

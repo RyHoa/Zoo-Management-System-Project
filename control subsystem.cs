@@ -14,7 +14,7 @@ namespace ZooManagementSystemControl
     {
         //attributes to include form, list, controller, task
         //add constructor
-        LoginForm loginForm = new LoginForm();
+        
         
 
     }
@@ -147,10 +147,10 @@ namespace ZooManagementSystemControl
 
                     connection.Close();
                 }
-
-
-
             }
+            StartupMenu startUp = new StartupMenu();
+            startUp.Show();
+            Application.Run();
         }
     
     public static Account getUser(int _usn)
@@ -238,8 +238,9 @@ namespace ZooManagementSystemControl
     public class StartController : Controller
     {
         public static void initiate() 
-        { 
+        {
             DBConnector.initializeDB();
+
         }
     }
 
@@ -257,9 +258,16 @@ namespace ZooManagementSystemControl
         { 
             //display login form
         }
-        public static void login(int usn, string pwd) // Make sure to change the class diagram to reflect void and not bool
+        public static bool login(string _usn, string _pwd)
         {
-            string hashedPwd = pwd.GetHashCode().ToString();
+            
+            
+            if(!Int32.TryParse(_usn, out int usn))
+            {
+                return false;
+            }
+
+            string hashedPwd = _pwd.GetHashCode().ToString();
             Account user = DBConnector.getUser(usn);
             if (validate(user, hashedPwd))
             {
@@ -274,27 +282,27 @@ namespace ZooManagementSystemControl
                 //initialAddTask.Activate();
                 //close login form also
                 Console.WriteLine("Pass"); //delete later
-                Application.Exit();
                 if(user.Role == "Admin")
                 {
                     System.Console.WriteLine("test");
                     addTaskMenu initialAddTask = new addTaskMenu();
-                    initialAddTask.ShowDialog();
-                    //initialAddTask.Activate();
-                    //Application.Run(initialAddTask);
+                    Form.ActiveForm.Close();                                //this should close whatever previous form is open        
+                    initialAddTask.Show();
+                    
+                    
+                    
                 }
                 else if(user.Role == "Employee")
                 {
                     //open updateTaskMenu
                 }
-                
 
+                return true;
 
             }
             else
             {
-                Console.WriteLine("Error"); //delete later
-                // display error
+                return false;
             }
         }
         public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool

@@ -34,7 +34,7 @@ namespace ZooManagementSystemBoundary
         {
             StartupMenu returnHome = new StartupMenu();    // create 
             this.Close();                     // close the logout form
-            Application.Run(returnHome);            // open startup menu again
+            returnHome.Show();
         }
     }
 }

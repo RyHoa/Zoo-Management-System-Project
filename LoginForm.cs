@@ -36,9 +36,10 @@ namespace ZooManagementSystemBoundary
         {
            
             
-            LoginControl.login(Convert.ToInt32(txtbxEmpID.Text), txtbxPass.Text);
-            
-            
+            if (!LoginControl.login(txtbxEmpID.Text, txtbxPass.Text))
+            {
+                ErrorMessage.Visible = true;
+            }
             //need to start moving to next form based on admin or employee
             //need to display error
         }

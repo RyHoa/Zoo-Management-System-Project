@@ -23,10 +23,9 @@ namespace ZooManagementSystemBoundary
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();           // close the startup page
             LoginForm loginform = new LoginForm();
-
-            Application.Run(loginform);   // load login form
+            this.Close();
+            loginform.Show();
         }
     }
 }

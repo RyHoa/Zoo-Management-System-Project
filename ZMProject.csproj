@@ -81,6 +81,12 @@
     </Compile>
     <Compile Include="control subsystem.cs" />
     <Compile Include="entity subsystem.cs" />
+    <Compile Include="updateTaskMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateTaskMenu.Designer.cs">
+      <DependentUpon>updateTaskMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addTaskMenu.resx">
       <DependentUpon>addTaskMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateTaskMenu.resx">
+      <DependentUpon>updateTaskMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogoutForm.resx">
       <DependentUpon>LogoutForm.cs</DependentUpon>
