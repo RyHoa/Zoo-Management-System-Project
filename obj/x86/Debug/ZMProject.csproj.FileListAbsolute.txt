@@ -48,3 +48,29 @@ C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Deb
 C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ZMProject.csproj.CopyComplete
 C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.exe
 C:\Users\Ryan Hoang\Source\Repos\RyHoa\zoo-management-system-project\obj\x86\Debug\ConsoleApplication.pdb
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\ConsoleApplication.exe.config
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\ConsoleApplication.exe
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\ConsoleApplication.pdb
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\en-US\ConsoleApplication.resources.dll
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\EntityFramework.dll
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\System.Data.SQLite.dll
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\EntityFramework.xml
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Prophet\Source\Repos\zmproj\bin\Debug\System.Data.SQLite.xml
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZMProject.csproj.AssemblyReference.cache
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZMProject.csproj.SuggestedBindingRedirects.cache
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.resources
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZMProject.updateTaskMenu.resources
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZooManagementSystemBoundary.LogoutForm.resources
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZooManagementSystemBoundary.LoginForm.resources
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZooManagementSystemBoundary.StartupMenu.resources
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZooManagementSystemBoundary.addTaskMenu.en-US.resources
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZMProject.csproj.GenerateResource.cache
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZMProject.csproj.CoreCompileInputs.cache
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\en-US\ConsoleApplication.resources.dll
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ZMProject.csproj.CopyComplete
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ConsoleApplication.exe
+C:\Users\Prophet\Source\Repos\zmproj\obj\x86\Debug\ConsoleApplication.pdb

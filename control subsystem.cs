@@ -9,12 +9,10 @@ using System.Windows.Forms;
 
 namespace ZooManagementSystemControl
 {
-
     public class Controller
     {
         //attributes to include form, list, controller, task
         //add constructor
-        
         
 
     }
@@ -118,6 +116,8 @@ namespace ZooManagementSystemControl
 
                 using (var command = new SQLiteCommand(connection))
                 {
+                    command.CommandText = dropSql;
+                    command.ExecuteNonQuery();
 
                     command.CommandText = createLogTableQuery;
                     command.ExecuteNonQuery();
@@ -212,7 +212,7 @@ namespace ZooManagementSystemControl
                     command.CommandText = insert;
                     command.Parameters.AddWithValue("$logType", "logout");
                     command.Parameters.AddWithValue("$dateTime", _time);
-                    command.Parameters.AddWithValue("empID", _usn);
+                    command.Parameters.AddWithValue("$empID", _usn);
                     command.ExecuteNonQuery();
                 }
             }
@@ -222,7 +222,7 @@ namespace ZooManagementSystemControl
     public class LogoutControl : Controller
     {
         public static void logout(int _usn) 
-        { 
+        {
             DateTime time = DateTime.Now;
             string strTime = time.ToString();
             DBConnector.saveLogout(_usn, strTime);
@@ -287,10 +287,8 @@ namespace ZooManagementSystemControl
                     System.Console.WriteLine("test");
                     addTaskMenu initialAddTask = new addTaskMenu();
                     Form.ActiveForm.Close();                                //this should close whatever previous form is open        
+                    initialAddTask.editID = usn.ToString();
                     initialAddTask.Show();
-                    
-                    
-                    
                 }
                 else if(user.Role == "Employee")
                 {

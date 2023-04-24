@@ -28,7 +28,7 @@ namespace ZooManagementSystemEntity                 // change stuff in here acco
     }
     public class Task
     {
-        public Task(int _taskID, int _animalID, int _taskType, int _employeeID)
+        public Task(int _taskID, int _animalID, string _taskType, int _employeeID) // update class diagram to reflect empid and tasktype
         {    
             TaskID = _taskID;
             AnimalID = _animalID;
@@ -37,13 +37,23 @@ namespace ZooManagementSystemEntity                 // change stuff in here acco
         }
 
         private int taskID;
-        public int TaskID {get;set;} 
+        public int TaskID 
+        {
+            get { return taskID; }
+            set 
+            { 
+                if (value >= 1 && value < int.MaxValue)
+                {
+                    taskID = value;
+                }
+            }
+        } 
         
         private int animalID;
         public int AnimalID {get;set;}
 
-        private int taskType;
-        public int TaskType {get;set;}
+        private string taskType;
+        public string TaskType {get;set;}
 
         private int employeeID;
         public int EmployeeID {get;set;}

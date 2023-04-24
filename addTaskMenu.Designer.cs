@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addTaskMenu));
             this.comboTaskType = new System.Windows.Forms.ComboBox();
             this.comboAnID = new System.Windows.Forms.ComboBox();
             this.comboEmpID = new System.Windows.Forms.ComboBox();
@@ -40,97 +39,151 @@
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnSubmitTask = new System.Windows.Forms.Button();
             this.addTaskCal = new System.Windows.Forms.MonthCalendar();
+            this.idLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboTaskType
             // 
-            resources.ApplyResources(this.comboTaskType, "comboTaskType");
             this.comboTaskType.FormattingEnabled = true;
             this.comboTaskType.Items.AddRange(new object[] {
-            resources.GetString("comboTaskType.Items"),
-            resources.GetString("comboTaskType.Items1"),
-            resources.GetString("comboTaskType.Items2"),
-            resources.GetString("comboTaskType.Items3"),
-            resources.GetString("comboTaskType.Items4")});
+            " ",
+            "Refill Food",
+            "Refill Water",
+            "Clean Habitat",
+            "Enrichment Activity"});
+            this.comboTaskType.Location = new System.Drawing.Point(104, 368);
             this.comboTaskType.Name = "comboTaskType";
+            this.comboTaskType.Size = new System.Drawing.Size(121, 21);
+            this.comboTaskType.TabIndex = 22;
             // 
             // comboAnID
             // 
-            resources.ApplyResources(this.comboAnID, "comboAnID");
             this.comboAnID.FormattingEnabled = true;
             this.comboAnID.Items.AddRange(new object[] {
-            resources.GetString("comboAnID.Items"),
-            resources.GetString("comboAnID.Items1"),
-            resources.GetString("comboAnID.Items2"),
-            resources.GetString("comboAnID.Items3"),
-            resources.GetString("comboAnID.Items4"),
-            resources.GetString("comboAnID.Items5"),
-            resources.GetString("comboAnID.Items6")});
+            " ",
+            "a001",
+            "a002",
+            "b001",
+            "b002",
+            "b003",
+            "c001"});
+            this.comboAnID.Location = new System.Drawing.Point(104, 253);
             this.comboAnID.Name = "comboAnID";
+            this.comboAnID.Size = new System.Drawing.Size(121, 21);
+            this.comboAnID.TabIndex = 21;
             // 
             // comboEmpID
             // 
-            resources.ApplyResources(this.comboEmpID, "comboEmpID");
             this.comboEmpID.FormattingEnabled = true;
             this.comboEmpID.Items.AddRange(new object[] {
-            resources.GetString("comboEmpID.Items"),
-            resources.GetString("comboEmpID.Items1"),
-            resources.GetString("comboEmpID.Items2"),
-            resources.GetString("comboEmpID.Items3"),
-            resources.GetString("comboEmpID.Items4"),
-            resources.GetString("comboEmpID.Items5")});
+            " ",
+            "1001",
+            "1002",
+            "1003",
+            "1004",
+            "1005"});
+            this.comboEmpID.Location = new System.Drawing.Point(104, 140);
             this.comboEmpID.Name = "comboEmpID";
+            this.comboEmpID.Size = new System.Drawing.Size(121, 21);
+            this.comboEmpID.TabIndex = 20;
             // 
             // label4
             // 
-            resources.ApplyResources(this.label4, "label4");
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(231, 26);
             this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(161, 31);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Add a Task";
             // 
             // label1
             // 
-            resources.ApplyResources(this.label1, "label1");
+            this.label1.AutoSize = true;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(353, 103);
             this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Choose a Task Date:";
             // 
             // label3
             // 
-            resources.ApplyResources(this.label3, "label3");
+            this.label3.AutoSize = true;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(101, 325);
             this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Choose a task type:";
             // 
             // label2
             // 
-            resources.ApplyResources(this.label2, "label2");
+            this.label2.AutoSize = true;
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(101, 208);
             this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Choose Animal ID:";
             // 
             // lblEmpID
             // 
-            resources.ApplyResources(this.lblEmpID, "lblEmpID");
+            this.lblEmpID.AutoSize = true;
+            this.lblEmpID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblEmpID.Location = new System.Drawing.Point(101, 110);
             this.lblEmpID.Name = "lblEmpID";
+            this.lblEmpID.Size = new System.Drawing.Size(109, 13);
+            this.lblEmpID.TabIndex = 15;
+            this.lblEmpID.Text = "Choose Employee ID:";
             // 
             // btnLogout
             // 
-            resources.ApplyResources(this.btnLogout, "btnLogout");
+            this.btnLogout.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLogout.Location = new System.Drawing.Point(490, 26);
             this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(97, 33);
+            this.btnLogout.TabIndex = 14;
+            this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnSubmitTask
             // 
-            resources.ApplyResources(this.btnSubmitTask, "btnSubmitTask");
+            this.btnSubmitTask.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSubmitTask.Location = new System.Drawing.Point(379, 356);
             this.btnSubmitTask.Name = "btnSubmitTask";
+            this.btnSubmitTask.Size = new System.Drawing.Size(158, 40);
+            this.btnSubmitTask.TabIndex = 13;
+            this.btnSubmitTask.Text = "Submit Task";
             this.btnSubmitTask.UseVisualStyleBackColor = true;
             this.btnSubmitTask.Click += new System.EventHandler(this.btnSubmitTask_Click);
             // 
             // addTaskCal
             // 
-            resources.ApplyResources(this.addTaskCal, "addTaskCal");
+            this.addTaskCal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.addTaskCal.Location = new System.Drawing.Point(356, 152);
             this.addTaskCal.MinDate = new System.DateTime(2023, 4, 17, 0, 0, 0, 0);
             this.addTaskCal.Name = "addTaskCal";
+            this.addTaskCal.TabIndex = 12;
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(12, 26);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(24, 13);
+            this.idLabel.TabIndex = 23;
+            this.idLabel.Text = "ID: ";
             // 
             // addTaskMenu
             // 
             this.AcceptButton = this.btnSubmitTask;
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.idLabel);
             this.Controls.Add(this.comboTaskType);
             this.Controls.Add(this.comboAnID);
             this.Controls.Add(this.comboEmpID);
@@ -143,6 +196,8 @@
             this.Controls.Add(this.btnSubmitTask);
             this.Controls.Add(this.addTaskCal);
             this.Name = "addTaskMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Add Task";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,5 +216,6 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSubmitTask;
         private System.Windows.Forms.MonthCalendar addTaskCal;
+        private System.Windows.Forms.Label idLabel;
     }
 }

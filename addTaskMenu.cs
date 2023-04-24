@@ -89,8 +89,14 @@ namespace ZooManagementSystemBoundary
             // show logout page
 
             LogoutForm logoutform = new LogoutForm(); // create new logout page
+            LogoutControl.logout(Convert.ToInt32(this.editID));
             this.Close();             // close addtask page
             logoutform.Show();        // run logout page
+        }
+        public string editID
+        {
+            get { return idLabel.Text; }
+            set { idLabel.Text = value; }
         }
     }
 }

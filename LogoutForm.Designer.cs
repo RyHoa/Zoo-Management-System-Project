@@ -66,7 +66,7 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // formLogout
+            // LogoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -74,7 +74,8 @@
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.picZooLogo);
             this.Controls.Add(this.label1);
-            this.Name = "formLogout";
+            this.Name = "LogoutForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logout";
             ((System.ComponentModel.ISupportInitialize)(this.picZooLogo)).EndInit();
             this.ResumeLayout(false);
