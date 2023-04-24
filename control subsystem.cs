@@ -6,6 +6,7 @@ using ZooManagementSystemBoundary;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Windows.Forms;
+using ZMProject;
 
 namespace ZooManagementSystemControl
 {
@@ -284,7 +285,6 @@ namespace ZooManagementSystemControl
                 Console.WriteLine("Pass"); //delete later
                 if(user.Role == "Admin")
                 {
-                    System.Console.WriteLine("test");
                     addTaskMenu initialAddTask = new addTaskMenu();
                     Form.ActiveForm.Close();                                //this should close whatever previous form is open        
                     initialAddTask.editID = usn.ToString();
@@ -292,7 +292,10 @@ namespace ZooManagementSystemControl
                 }
                 else if(user.Role == "Employee")
                 {
-                    //open updateTaskMenu
+                    updateTaskMenu updateMenu = new updateTaskMenu();
+                    Form.ActiveForm.Close();
+                    updateMenu.editID = usn.ToString();
+                    updateMenu.Show();
                 }
 
                 return true;
