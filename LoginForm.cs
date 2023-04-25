@@ -18,30 +18,16 @@ namespace ZooManagementSystemBoundary
         {
             InitializeComponent();
         }
-
-        //private void LoginForm_Load(object sender, EventArgs e)
-        //{
-        //        
-        //}
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void submit(object sender, EventArgs e)
         {
-            //which button is this?
-
-        }
-
-
-        
-        private void btnLogin_Click_1(object sender, EventArgs e)
-        {
-           
-            
             if (!LoginControl.login(txtbxEmpID.Text, txtbxPass.Text))
             {
-                ErrorMessage.Visible = true;
+                display();
             }
-            //need to start moving to next form based on admin or employee
-            //need to display error
+        }
+        private void display()
+        {
+            ErrorMessage.Visible = true;
         }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.btnLogin = new System.Windows.Forms.Button();
-            this.txtbxPass = new System.Windows.Forms.MaskedTextBox();
             this.txtbxEmpID = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ErrorMessage = new System.Windows.Forms.Label();
+            this.txtbxPass = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -45,15 +45,7 @@
             this.btnLogin.TabIndex = 17;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
-            // 
-            // txtbxPass
-            // 
-            this.txtbxPass.Location = new System.Drawing.Point(339, 269);
-            this.txtbxPass.Margin = new System.Windows.Forms.Padding(2);
-            this.txtbxPass.Name = "txtbxPass";
-            this.txtbxPass.Size = new System.Drawing.Size(126, 20);
-            this.txtbxPass.TabIndex = 16;
+            this.btnLogin.Click += new System.EventHandler(this.submit);
             // 
             // txtbxEmpID
             // 
@@ -106,14 +98,22 @@
             this.ErrorMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.ErrorMessage.Visible = false;
             // 
+            // txtbxPass
+            // 
+            this.txtbxPass.Location = new System.Drawing.Point(339, 266);
+            this.txtbxPass.Name = "txtbxPass";
+            this.txtbxPass.Size = new System.Drawing.Size(126, 20);
+            this.txtbxPass.TabIndex = 19;
+            this.txtbxPass.UseSystemPasswordChar = true;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtbxPass);
             this.Controls.Add(this.ErrorMessage);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtbxPass);
             this.Controls.Add(this.txtbxEmpID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -123,17 +123,16 @@
             this.Text = "Login Screen";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.MaskedTextBox txtbxPass;
         private System.Windows.Forms.MaskedTextBox txtbxEmpID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label ErrorMessage;
+        private System.Windows.Forms.MaskedTextBox txtbxPass;
     }
 }

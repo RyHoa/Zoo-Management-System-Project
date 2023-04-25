@@ -18,12 +18,12 @@ namespace ZooManagementSystemBoundary
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void logout_Click(object sender, EventArgs e)
         {
-            LogoutForm logoutform = new LogoutForm(); // create new logout page
+            LogoutForm logoutform = new LogoutForm(); 
             LogoutControl.logout(Convert.ToInt32(this.editID));
-            this.Close();             // close addtask page
-            logoutform.Show();        // run logout page
+            this.Close();             
+            logoutform.Show();        
         }
 
         private void label2_Click(object sender, EventArgs e)

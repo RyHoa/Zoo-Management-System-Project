@@ -166,6 +166,7 @@
             this.addTaskCal.Location = new System.Drawing.Point(356, 152);
             this.addTaskCal.MinDate = new System.DateTime(2023, 4, 17, 0, 0, 0, 0);
             this.addTaskCal.Name = "addTaskCal";
+            this.addTaskCal.ShowTodayCircle = false;
             this.addTaskCal.TabIndex = 12;
             // 
             // idLabel

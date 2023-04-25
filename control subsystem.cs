@@ -12,33 +12,30 @@ namespace ZooManagementSystemControl
 {
     public class Controller
     {
-        //attributes to include form, list, controller, task
-        //add constructor
-        
+        Form myForm = new Form();
+        List<Task> taskList = new List<Task>();       
+        Task myTask = new Task();
+        public Controller()
+        {
+            
+        }        
 
     }
-
     public class DBConnector : Controller
     {
         public static void initializeDB()
-        {
+        {           
 
-            /*Things to finish
-             * 1. Ask about the primary key constraint thing
-             * 2. Finish putting hash password
-             * 3. Ask what values to store in what tables and if we need to do all the tables
-             * 4. Make EMP ID Integer and test it out
-             * 
-             */
+            /*Method to initialize DB
+             * Removes old tables in the DB file
+             * Creates new file with new tables
+             * Preload information for entities
+             * Assume information in the DB is correct
+             * Hash passwords to meet requirement
+             * Loads the Startup Page*/
 
-
-
-            //Only creates the DB if the file isn't there 
-            //if (!File.Exists(@"./zManageDB.db"))
-            //{
-            //May need the actual path but it creates the db file here
+            //Code to create the DB file
             SQLiteConnection.CreateFile(@"./zManageDB.db");
-            System.Console.WriteLine("DB file is created");
 
             //automates the table creation here
             using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
@@ -52,11 +49,6 @@ namespace ZooManagementSystemControl
                     DROP TABLE IF EXISTS TASK;  
                     DROP TABLE IF EXISTS ANIMAL; COMMIT;";
 
-
-
-
-
-
                 // Table initialization
 
                 //String to create LOG table
@@ -68,9 +60,7 @@ namespace ZooManagementSystemControl
                     , FOREIGN KEY([empID]) REFERENCES [EMPLOYEE]([empID])
                     );";
 
-                //String to create Employee table
-
-                // go back into class diagram and change -usn:string to -usn:int
+                //String to create Employee table                
                 string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS [EMPLOYEE] (
                     [empID] INTEGER PRIMARY KEY UNIQUE NOT NULL CHECK ([empID]>999 AND [empID]<10000) 
                     , [passwd] TEXT NOT NULL
@@ -97,18 +87,13 @@ namespace ZooManagementSystemControl
                     , [location] TEXT NOT NULL
                     );";
 
-                //String to insert information into the tables
-                //Don't include PK and FK?
-                //Skip LOG and Task for now?
-                //Remember to put hash values for password
-
-                //not done need values and why do we not insert primary keys?
-                //prob dont need the log stuff
+                //String to insert information into the tables                
                 string insertString = @"BEGIN TRANSACTION;
                     INSERT INTO LOG (logType, dateTime, empID) VALUES ('logout', '2021-02-05', 1000);
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1000, $hashpwd1, 'Admin', 'Ryan', 'Hoang'); 
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1001, $hashpwd2, 'Employee', 'Andrew', 'Hoang'); 
-                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('2022-09-01', True, 'Feed', 1001, 1);
+                    INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1002, $hashpwd3, 'Employee', 'Elijah', 'Gibson'); 
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('2022-09-01', True, 'Refil Food', 1001, 1);
                     INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 001', 1);
                     COMMIT;";
 
@@ -117,38 +102,42 @@ namespace ZooManagementSystemControl
 
                 using (var command = new SQLiteCommand(connection))
                 {
+
+                    /*command and execute for certain functions
+                    one to drop existing tables and others to create 
+                    new table */
                     command.CommandText = dropSql;
                     command.ExecuteNonQuery();
-
                     command.CommandText = createLogTableQuery;
                     command.ExecuteNonQuery();
-
                     command.CommandText = createEmployeeTableQuery;
                     command.ExecuteNonQuery();
-
                     command.CommandText = createTaskTableQuery;
                     command.ExecuteNonQuery();
-
                     command.CommandText = createAnimalTableQuery;
                     command.ExecuteNonQuery();
 
                     command.CommandText = insertString;
 
-
-
-
-                    //commands to hash password and add it to the Employee Password column
-                    string pwd1 = "hi";
-                    string pwd2 = "bye";
+                    //commands to hash password 
+                    string pwd1 = "@Ryan123";
+                    string pwd2 = "@Andrew123";
+                    string pwd3 = "@Elijah123";
                     int x = pwd1.GetHashCode();
                     int y = pwd2.GetHashCode();
+                    int z = pwd3.GetHashCode();
+
+                    //commands to add to the pwd column of the Employee Table
                     command.Parameters.AddWithValue("$hashpwd1", x);
                     command.Parameters.AddWithValue("$hashpwd2", y);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("$hashpwd3", z);
 
+                    command.ExecuteNonQuery();
                     connection.Close();
                 }
             }
+
+            //code to create a startUp menu and initialize it 
             StartupMenu startUp = new StartupMenu();
             startUp.Show();
             Application.Run();
@@ -156,7 +145,13 @@ namespace ZooManagementSystemControl
     
     public static Account getUser(int _usn)
     {
-            Account acct = new Account();
+            /*Method to get account formation for a certain user
+             * Create an account object to store data from the DB
+             * Open a connection into the DB and use the command query to get data
+             * Store data into the properties of the account object 
+             */
+
+            Account acct = new Account(); 
             using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
             {
                 connection.Open();
@@ -181,12 +176,32 @@ namespace ZooManagementSystemControl
             }
     }
 
-        //public static ItemList getItems(string _usn) { }
-        //public static void save(Task _task) { }
-        public static void setCompleted(int _taskID) { }
+        public static List<Task> getItems(string _usn)
+        {
+
+            //not done
+            List<Task> taskList = new List<Task>();
+            return taskList;
+
+        }
+        public static void save(Task _task) 
+        {
+            //not done
+            
+        }
+        public static void setCompleted(int _taskID)
+        {
+            
+            //not done
+        }
 
         public static void saveLogin(int _usn, string _time) 
         { 
+            /* Method to save the Login information
+             * Sets the connection to the DB file
+             * Code used to save the Login information 
+             * for a correct user */           
+             
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
@@ -204,6 +219,11 @@ namespace ZooManagementSystemControl
         }
         public static void saveLogout(int _usn, string _time) 
         {
+            /* Method to save the Logout information
+             * Sets the connection to the DB file
+             * Code used to save the Logout information 
+             * for a correct user */     
+             
             using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
             {
                 connection.Open();
@@ -224,6 +244,10 @@ namespace ZooManagementSystemControl
     {
         public static void logout(int _usn) 
         {
+            /*Method used to indicate logout
+             * Sends the current time to the 
+             * saveLogout method*/
+             
             DateTime time = DateTime.Now;
             string strTime = time.ToString();
             DBConnector.saveLogout(_usn, strTime);
@@ -231,10 +255,11 @@ namespace ZooManagementSystemControl
     }
     public class addTaskControl : Controller
     {
-        //public static void submit(Task x) 
-        //{
-        //    DBConnector.save(x);
-        //}
+        public static void submit(Task x) 
+        {
+            //not done
+            DBConnector.save(x);
+        }
     }
     public class StartController : Controller
     {
@@ -249,44 +274,52 @@ namespace ZooManagementSystemControl
     {
         public static void complete(int usn, int taskID) 
         { 
+            //not done
             DBConnector.setCompleted(taskID);
-            //var items = DBConnector.getItems(usn);
+            List<Task> items = DBConnector.getItems(usn.ToString());
         }
     }
+
     public class LoginControl : Controller
     {
         public static void login() 
-        { 
-            //display login form
+        {
+            /* Method to create and show the loginform
+             */
+            LoginForm loginform = new LoginForm();
+            Form.ActiveForm.Close();
+            loginform.Show();
         }
         public static bool login(string _usn, string _pwd)
         {
+            /* Method to do login validation*/
             
-            
+            //if not an integer return false, login failure
             if(!Int32.TryParse(_usn, out int usn))
             {
                 return false;
             }
 
+            //stores the user password and hashes it into a string
             string hashedPwd = _pwd.GetHashCode().ToString();
+
+            //gets the Account from the database
             Account user = DBConnector.getUser(usn);
+
+
+            /*If true we store the login into the 
+             * db and then open the form 
+            based on either Admin or Employee */
             if (validate(user, hashedPwd))
             {
                 DateTime currTime = DateTime.Now;
                 string time = currTime.ToString();
-                DBConnector.saveLogin(usn, time);
-
-                // Eliana's scratch work
-                //we need a way to differentiate account type 
-                // assuming every user is an admin ( for testing ):
-                //addTaskMenu initialAddTask = new addTaskMenu();
-                //initialAddTask.Activate();
-                //close login form also
-                Console.WriteLine("Pass"); //delete later
+                DBConnector.saveLogin(usn, time);              
+                
                 if(user.Role == "Admin")
                 {
                     addTaskMenu initialAddTask = new addTaskMenu();
-                    Form.ActiveForm.Close();                                //this should close whatever previous form is open        
+                    Form.ActiveForm.Close();     
                     initialAddTask.editID = usn.ToString();
                     initialAddTask.Show();
                 }
@@ -301,13 +334,17 @@ namespace ZooManagementSystemControl
                 return true;
 
             }
+            //if the pwds do not match return false indicating login failure
             else
             {
                 return false;
             }
         }
-        public static bool validate(Account user, string pwd) // Make sure to change the class diagram to reflect returning a bool
+
+
+        public static bool validate(Account user, string pwd) 
         {
+            /* Method to compare the user password with the account password*/
             return user.Password == pwd; 
         }
     }

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace ZooManagementSystemEntity                 // change stuff in here according to feedback! :D
+namespace ZooManagementSystemEntity
 {
+
     public class Account
     {
+        
         public Account() { }
         public Account(int _usn, string _fname, string _lname, string _role, string _password)
         {
@@ -14,21 +16,15 @@ namespace ZooManagementSystemEntity                 // change stuff in here acco
             Password = _password;
         }      
 
-        private int usn;
         public int Usn {get;set;}
-
-        private string role;        
         public string Role {get;set;}
-        
-        private string password;
-        public string Password {get;set;}  
-
-        private string name;
+        public string Password {get;set;}
         public string Name {get;set;}    
     }
     public class Task
     {
-        public Task(int _taskID, int _animalID, string _taskType, int _employeeID) // update class diagram to reflect empid and tasktype
+        public Task() { }
+        public Task(int _taskID, int _animalID, string _taskType, int _employeeID)
         {    
             TaskID = _taskID;
             AnimalID = _animalID;
@@ -47,15 +43,10 @@ namespace ZooManagementSystemEntity                 // change stuff in here acco
                     taskID = value;
                 }
             }
-        } 
+        }        
         
-        private int animalID;
-        public int AnimalID {get;set;}
-
-        private string taskType;
-        public string TaskType {get;set;}
-
-        private int employeeID;
+        public int AnimalID {get;set;}        
+        public string TaskType {get;set;}        
         public int EmployeeID {get;set;}
     }
     public class Animal
@@ -63,9 +54,7 @@ namespace ZooManagementSystemEntity                 // change stuff in here acco
         public Animal(int _animalID)
         {
             AnimalID = _animalID;
-        }
-
-        private int animalID;
+        }        
         public int AnimalID {get;set;}       
         
     }

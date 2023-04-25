@@ -16,6 +16,9 @@ namespace ZMProject
     {
         public static void Main()
         {
+
+            StartController.initiate();
+
             //Console.WriteLine("1");
             //DBConnector.initializeDB();
             //Console.WriteLine("2");
@@ -50,12 +53,6 @@ namespace ZMProject
             //Console.ReadKey();
             //LoginForm initialStart2 = new LoginForm();
             //Application.Run(initialStart2);
-
-
-            DBConnector.initializeDB();
-            
-
-
 
 
             ////kinda works
