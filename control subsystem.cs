@@ -293,6 +293,12 @@ namespace ZooManagementSystemControl
         public static bool login(string _usn, string _pwd)
         {
             /* Method to do login validation*/
+
+            //if length is not 4 which is ID specified length, then return false
+            if(_usn.Length != 4)
+            {               
+                return false;
+            }
             
             //if not an integer return false, login failure
             if(!Int32.TryParse(_usn, out int usn))
@@ -300,6 +306,7 @@ namespace ZooManagementSystemControl
                 return false;
             }
 
+            
             //stores the user password and hashes it into a string
             string hashedPwd = _pwd.GetHashCode().ToString();
 
