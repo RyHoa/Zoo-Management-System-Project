@@ -81,7 +81,10 @@ namespace ZooManagementSystemBoundary
 
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
-
+            //submit button
+            //need to get Date from the calender
+            ZooManagementSystemEntity.Task myTask = new ZooManagementSystemEntity.Task(default,default, Convert.ToInt32(comboAnID.Text), comboTaskType.Text, Convert.ToInt32(comboEmpID.Text),default);
+            addTaskControl.submit(myTask);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -97,6 +100,27 @@ namespace ZooManagementSystemBoundary
         {
             get { return idLabel.Text; }
             set { idLabel.Text = value; }
+        }
+
+        private void comboEmpID_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboAnID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboTaskType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addTaskCal_DateChanged_1(object sender, DateRangeEventArgs e)
+        {
+            
+            
         }
     }
 }

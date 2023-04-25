@@ -55,6 +55,7 @@
             this.comboTaskType.Name = "comboTaskType";
             this.comboTaskType.Size = new System.Drawing.Size(121, 21);
             this.comboTaskType.TabIndex = 22;
+            this.comboTaskType.SelectedIndexChanged += new System.EventHandler(this.comboTaskType_SelectedIndexChanged);
             // 
             // comboAnID
             // 
@@ -71,6 +72,7 @@
             this.comboAnID.Name = "comboAnID";
             this.comboAnID.Size = new System.Drawing.Size(121, 21);
             this.comboAnID.TabIndex = 21;
+            this.comboAnID.SelectedIndexChanged += new System.EventHandler(this.comboAnID_SelectedIndexChanged);
             // 
             // comboEmpID
             // 
@@ -86,6 +88,7 @@
             this.comboEmpID.Name = "comboEmpID";
             this.comboEmpID.Size = new System.Drawing.Size(121, 21);
             this.comboEmpID.TabIndex = 20;
+            this.comboEmpID.SelectedIndexChanged += new System.EventHandler(this.comboEmpID_SelectedIndexChanged_1);
             // 
             // label4
             // 
@@ -168,6 +171,7 @@
             this.addTaskCal.Name = "addTaskCal";
             this.addTaskCal.ShowTodayCircle = false;
             this.addTaskCal.TabIndex = 12;
+            this.addTaskCal.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.addTaskCal_DateChanged_1);
             // 
             // idLabel
             // 

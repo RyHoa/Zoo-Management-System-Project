@@ -24,13 +24,18 @@ namespace ZooManagementSystemEntity
     public class Task
     {
         public Task() { }
-        public Task(int _taskID, int _animalID, string _taskType, int _employeeID)
-        {    
+        public Task(string _date, int _taskID, int _animalID, string _taskType, int _employeeID, char _Completion)
+        {
+            Date = _date;
             TaskID = _taskID;
             AnimalID = _animalID;
             TaskType = _taskType;
             EmployeeID = _employeeID;
+            Completion = _Completion;
         }
+        public char Completion { get;set;}
+
+        public string Date { get;set;}
 
         private int taskID;
         public int TaskID 

@@ -186,7 +186,24 @@ namespace ZooManagementSystemControl
         }
         public static void save(Task _task) 
         {
-            //not done
+            using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
+            {
+                connection.Open();
+                using(SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    string insert = @"INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ($date, $completion, $taskType, $empID, $animalID);";
+
+                    command.CommandText = insert;
+                    command.Parameters.AddWithValue("$date", _task.Date);
+                    command.Parameters.AddWithValue("$completion", _task.Completion);
+                    command.Parameters.AddWithValue("$taskType", _task.TaskType);
+                    command.Parameters.AddWithValue("$empID", _task.EmployeeID);
+                    command.Parameters.AddWithValue("$animalID", _task.AnimalID);
+                    
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
             
         }
         public static void setCompleted(int _taskID)
@@ -255,10 +272,10 @@ namespace ZooManagementSystemControl
     }
     public class addTaskControl : Controller
     {
-        public static void submit(Task x) 
+        public static void submit(Task _Task) 
         {
             //not done
-            DBConnector.save(x);
+            DBConnector.save(_Task);
         }
     }
     public class StartController : Controller
