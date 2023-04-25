@@ -24,7 +24,7 @@ namespace ZooManagementSystemEntity
     public class Task
     {
         public Task() { }
-        public Task(string _date, int _taskID, int _animalID, string _taskType, int _employeeID, char _Completion)
+        public Task(string _date, int _taskID, int _animalID, string _taskType, int _employeeID, bool _Completion)
         {
             Date = _date;
             TaskID = _taskID;
@@ -33,7 +33,7 @@ namespace ZooManagementSystemEntity
             EmployeeID = _employeeID;
             Completion = _Completion;
         }
-        public char Completion { get;set;}
+        public bool Completion { get;set;}
 
         public string Date { get;set;}
 
