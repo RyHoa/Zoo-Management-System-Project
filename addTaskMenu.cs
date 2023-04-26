@@ -17,7 +17,9 @@ namespace ZooManagementSystemBoundary
         public addTaskMenu()
         {
             InitializeComponent();
+            this.addTaskCal.MinDate = DateTime.Now;
         }
+
 
         private void formAddTask_1_Load(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e)
@@ -79,14 +81,39 @@ namespace ZooManagementSystemBoundary
             // do nothing
         }
 
-        private void btnSubmitTask_Click(object sender, EventArgs e)
+        private void submit(object sender, EventArgs e)
         {
-            //submit button
-            //need to get Date from the calender
-            ZooManagementSystemEntity.Task myTask = new ZooManagementSystemEntity.Task(default,default, Convert.ToInt32(comboAnID.Text), comboTaskType.Text, Convert.ToInt32(comboEmpID.Text),default);
-            addTaskControl.submit(myTask);
-        }
+            /* Parsing text boxes to create a Task object.
+             * 
+             * If a the text boxes are only partially filled, the
+             * task object is not created and nothing is submitted
+             * to the database.
+             */
 
+            Int32.TryParse(comboEmpID.Text, out int empID);
+            Int32.TryParse(comboAnID.Text, out int anID);
+            string taskType = comboTaskType.Text;
+            string calDate = addTaskCal.SelectionStart.ToString();
+            
+            if (calDate != null && anID != default && empID != default && taskType != null)
+            {
+                ZooManagementSystemEntity.Task myTask = new ZooManagementSystemEntity.Task(calDate, default, anID, taskType, empID, false);
+                addTaskControl.submit(myTask);                
+                myTask = new ZooManagementSystemEntity.Task();
+                this.reset();
+                SuccessMessage.Visible = true;
+            }
+                
+        }
+        private void reset()
+        {
+            /* Method to reset the text boxes in the 
+             * AddTaskMenu form i.e. makes them empty
+             */
+            comboEmpID.ResetText();
+            comboAnID.ResetText();
+            comboTaskType.ResetText();
+        }
         private void btnLogout_Click(object sender, EventArgs e)
         {
             // show logout page
@@ -119,8 +146,7 @@ namespace ZooManagementSystemBoundary
 
         private void addTaskCal_DateChanged_1(object sender, DateRangeEventArgs e)
         {
-            
-            
+
         }
     }
 }

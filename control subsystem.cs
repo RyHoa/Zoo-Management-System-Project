@@ -10,17 +10,8 @@ using ZMProject;
 
 namespace ZooManagementSystemControl
 {
-    public class Controller
-    {
-        Form myForm = new Form();
-        List<Task> taskList = new List<Task>();       
-        Task myTask = new Task();
-        public Controller()
-        {
-            
-        }        
+    public class Controller{}
 
-    }
     public class DBConnector : Controller
     {
         public static void initializeDB()
@@ -88,13 +79,24 @@ namespace ZooManagementSystemControl
                     );";
 
                 //String to insert information into the tables                
-                string insertString = @"BEGIN TRANSACTION;
-                    INSERT INTO LOG (logType, dateTime, empID) VALUES ('logout', '2021-02-05', 1000);
+                string insertString = @"BEGIN TRANSACTION;                    
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1000, $hashpwd1, 'Admin', 'Ryan', 'Hoang'); 
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1001, $hashpwd2, 'Employee', 'Andrew', 'Hoang'); 
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1002, $hashpwd3, 'Employee', 'Elijah', 'Gibson'); 
-                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('2022-09-01', True, 'Refil Food', 1001, 1);
+                    INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1003, $hashpwd1, 'Employee', 'Eliana', 'Lopez Feliciano'); 
+                    INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1004, $hashpwd2, 'Employee', 'Bethany', 'Sumner'); 
+                    INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1005, $hashpwd3, 'Employee', 'Bob', 'Test'); 
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/21/2023 12:00:00 AM', TRUE, 'Refill Food', 1001, 1);
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/22/2023 12:00:00 AM', TRUE, 'Enrichment Activity', 1001, 5);
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/26/2023 12:00:00 AM', FALSE, 'Clean Habitat', 1001, 3);
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/24/2023 12:00:00 AM', FALSE, 'Refill Water', 1001, 2);
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/22/2023 12:00:00 AM', FALSE, 'Refill Water', 1001, 1);
                     INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 001', 1);
+                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 001', 2);
+                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 002', 3);
+                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 002', 4);
+                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 003', 5);
+                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 003', 6);
                     COMMIT;";
 
 
@@ -176,13 +178,43 @@ namespace ZooManagementSystemControl
             }
     }
 
-        public static List<Task> getItems(string _usn)
+        public static List<Task> getTasks(int _usn)
         {
 
-            //not done
-            List<Task> taskList = new List<Task>();
-            return taskList;
+            /*Method to get task formation for a certain user
+             * Stores all task stuff into a List
+             * Create an task object to store data from the DB
+             * Once task is filled stored into tasklist object          
+             */
 
+            List<Task> taskList = new List<Task>();
+                using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
+                {
+                    connection.Open();
+                    using (var command = new SQLiteCommand(connection))
+                    {
+                        // query gets every currently assigned incomplete task for one employee
+                        string queryAcct = @"SELECT * FROM TASK WHERE (empID == $usn) and (completion != 1)";
+                        command.CommandText = queryAcct;
+                        command.Parameters.AddWithValue("$usn", _usn);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Task myTask = new Task();                               
+                                myTask.TaskID = reader.GetInt32(0);
+                                myTask.Date = reader.GetString(1);
+                                myTask.Completion = reader.GetBoolean(2);
+                                myTask.TaskType = reader.GetString(3);                                
+                                myTask.EmployeeID = reader.GetInt32(4);
+                                myTask.AnimalID = reader.GetInt32(5); 
+                                taskList.Add(myTask);                                
+                            }
+                        }
+                        connection.Close();
+                    }
+                }
+            return taskList;
         }
         public static void save(Task _task) 
         {
@@ -191,11 +223,10 @@ namespace ZooManagementSystemControl
                 connection.Open();
                 using(SQLiteCommand command = new SQLiteCommand(connection))
                 {
-                    string insert = @"INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ($date, $completion, $taskType, $empID, $animalID);";
+                    string insert = @"INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ($date, FALSE, $taskType, $empID, $animalID);";
 
                     command.CommandText = insert;
                     command.Parameters.AddWithValue("$date", _task.Date);
-                    command.Parameters.AddWithValue("$completion", _task.Completion);
                     command.Parameters.AddWithValue("$taskType", _task.TaskType);
                     command.Parameters.AddWithValue("$empID", _task.EmployeeID);
                     command.Parameters.AddWithValue("$animalID", _task.AnimalID);
@@ -208,8 +239,17 @@ namespace ZooManagementSystemControl
         }
         public static void setCompleted(int _taskID)
         {
-            
-            //not done
+            string query = @"UPDATE TASK SET completion = 1 WHERE (taskID == $taskID)";
+            using (SQLiteConnection connection = new SQLiteConnection(@"data source = zManageDB.db"))
+            {
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("$taskID", _taskID);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public static void saveLogin(int _usn, string _time) 
@@ -273,8 +313,7 @@ namespace ZooManagementSystemControl
     public class addTaskControl : Controller
     {
         public static void submit(Task _Task) 
-        {
-            //not done
+        {            
             DBConnector.save(_Task);
         }
     }
@@ -291,9 +330,14 @@ namespace ZooManagementSystemControl
     {
         public static void complete(int usn, int taskID) 
         { 
-            //not done
+            
+             /* This method should call setCompleted to set a specific task's
+             * completion field to TRUE. It then refreshes the UpdateMenu
+             * through the refresh() method by passing in the updated list
+             * of tasks directly from the database.
+             */
+
             DBConnector.setCompleted(taskID);
-            List<Task> items = DBConnector.getItems(usn.ToString());
         }
     }
 
@@ -301,8 +345,7 @@ namespace ZooManagementSystemControl
     {
         public static void login() 
         {
-            /* Method to create and show the loginform
-             */
+            /* Method to create and show the loginform*/
             LoginForm loginform = new LoginForm();
             Form.ActiveForm.Close();
             loginform.Show();
@@ -349,10 +392,11 @@ namespace ZooManagementSystemControl
                 }
                 else if(user.Role == "Employee")
                 {
-                    updateTaskMenu updateMenu = new updateTaskMenu();
+                    UpdateMenu updateMenu = new UpdateMenu();
                     Form.ActiveForm.Close();
-                    updateMenu.editID = usn.ToString();
+                    updateMenu.currentUserID = usn.ToString();
                     updateMenu.Show();
+                    updateMenu.display(usn, DBConnector.getTasks(usn));
                 }
 
                 return true;

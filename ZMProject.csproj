@@ -38,6 +38,9 @@
   <PropertyGroup>
     <RootNamespace>ZMProject</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -81,11 +84,11 @@
     </Compile>
     <Compile Include="control subsystem.cs" />
     <Compile Include="entity subsystem.cs" />
-    <Compile Include="updateTaskMenu.cs">
+    <Compile Include="UpdateMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="updateTaskMenu.Designer.cs">
-      <DependentUpon>updateTaskMenu.cs</DependentUpon>
+    <Compile Include="UpdateMenu.Designer.cs">
+      <DependentUpon>UpdateMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -159,8 +162,8 @@
     <EmbeddedResource Include="addTaskMenu.resx">
       <DependentUpon>addTaskMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="updateTaskMenu.resx">
-      <DependentUpon>updateTaskMenu.cs</DependentUpon>
+    <EmbeddedResource Include="UpdateMenu.resx">
+      <DependentUpon>UpdateMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogoutForm.resx">
       <DependentUpon>LogoutForm.cs</DependentUpon>

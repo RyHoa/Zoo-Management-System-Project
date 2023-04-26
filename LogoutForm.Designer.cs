@@ -38,7 +38,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(272, 232);
+            this.label1.Location = new System.Drawing.Point(273, 232);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(253, 13);
             this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // picZooLogo
             // 
             this.picZooLogo.Image = ((System.Drawing.Image)(resources.GetObject("picZooLogo.Image")));
-            this.picZooLogo.Location = new System.Drawing.Point(12, 92);
+            this.picZooLogo.Location = new System.Drawing.Point(4, 93);
             this.picZooLogo.Name = "picZooLogo";
             this.picZooLogo.Size = new System.Drawing.Size(776, 56);
             this.picZooLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -58,7 +58,7 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(330, 308);
+            this.btnLogout.Location = new System.Drawing.Point(334, 308);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(131, 23);
             this.btnLogout.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.picZooLogo);
             this.Controls.Add(this.label1);
