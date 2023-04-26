@@ -16,14 +16,14 @@ namespace ZooManagementSystemBoundary
 {
     public partial class UpdateMenu : Form
     {
-        private List<ZooManagementSystemEntity.Task> ItemList; // ADD THIS TO CLASS DIAGRAM
+        private List<ZooManagementSystemEntity.Task> TaskList; 
         private int taskPointer = 0;
         public UpdateMenu()
         {
             InitializeComponent();
         }
 
-        private void logout_Click(object sender, EventArgs e)
+        private void logout(object sender, EventArgs e)
         {
             LogoutForm logoutform = new LogoutForm(); 
             LogoutControl.logout(Convert.ToInt32(this.currentUserID));
@@ -65,7 +65,7 @@ namespace ZooManagementSystemBoundary
             Int32.TryParse(currentTaskID, out int taskID);
             UpdateControl.complete(usn, taskID);
             refresh();
-            display(usn, ItemList);
+            display(usn, TaskList);
         }
         public void display(int usn, List<ZooManagementSystemEntity.Task> _items, int taskptr = 0)
         {
@@ -79,9 +79,9 @@ namespace ZooManagementSystemBoundary
              * on the page to be set appropriately.
              */
 
-            this.ItemList = _items;
+            this.TaskList = _items;
 
-            if (ItemList.Count == 0)
+            if (TaskList.Count == 0)
             {
                 taskType.Text = "";
                 taskAnimal.Text = "";
@@ -99,7 +99,7 @@ namespace ZooManagementSystemBoundary
                 taskDate.Text = myTask.Date;
                 currentTaskID = myTask.TaskID.ToString();
 
-                TaskNo.Text = $"{taskPointer}/{ItemList.Count}";
+                TaskNo.Text = $"{taskPointer + 1}/{TaskList.Count}";
             }
             
         }
@@ -107,15 +107,15 @@ namespace ZooManagementSystemBoundary
         public void refresh()
         {
             // This method should, once markComplete is called, refresh the list of active tasks.
-            ItemList = DBConnector.getTasks(Convert.ToInt32(currentUserID));
+            TaskList = DBConnector.getTasks(Convert.ToInt32(currentUserID));
         }
 
         private void nextTask_Click(object sender, EventArgs e)
         {
-            if (taskPointer < ItemList.Count - 1)
+            if (taskPointer < TaskList.Count - 1)
             {
                 this.taskPointer++;
-                display(Convert.ToInt32(currentUserID), this.ItemList, taskPointer);
+                display(Convert.ToInt32(currentUserID), this.TaskList, taskPointer);
             }
         }
 
@@ -124,7 +124,7 @@ namespace ZooManagementSystemBoundary
             if (taskPointer > 0)
             {
                 this.taskPointer--;
-                display(Convert.ToInt32(currentUserID), this.ItemList, taskPointer);
+                display(Convert.ToInt32(currentUserID), this.TaskList, taskPointer);
             }
         }
     }

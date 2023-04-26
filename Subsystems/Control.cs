@@ -87,16 +87,12 @@ namespace ZooManagementSystemControl
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1004, $hashpwd2, 'Employee', 'Bethany', 'Sumner'); 
                     INSERT INTO EMPLOYEE (empID, passwd, empType, firstName, lastName) VALUES (1005, $hashpwd3, 'Employee', 'Bob', 'Test'); 
                     INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/21/2023 12:00:00 AM', TRUE, 'Refill Food', 1001, 1);
-                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/22/2023 12:00:00 AM', TRUE, 'Enrichment Activity', 1001, 5);
-                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/26/2023 12:00:00 AM', FALSE, 'Clean Habitat', 1001, 3);
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/22/2023 12:00:00 AM', TRUE, 'Enrichment Activity', 1001, 2);
+                    INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/26/2023 12:00:00 AM', FALSE, 'Clean Habitat', 1001, 1);
                     INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/24/2023 12:00:00 AM', FALSE, 'Refill Water', 1001, 2);
                     INSERT INTO TASK (date, completion, taskType, empID, animalID) VALUES ('4/22/2023 12:00:00 AM', FALSE, 'Refill Water', 1001, 1);
                     INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 001', 1);
                     INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 001', 2);
-                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 002', 3);
-                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 002', 4);
-                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 003', 5);
-                    INSERT INTO ANIMAL (location, animalID) VALUES ('Enclosure 003', 6);
                     COMMIT;";
 
 
@@ -145,13 +141,13 @@ namespace ZooManagementSystemControl
             Application.Run();
         }
     
-    public static Account getUser(int _usn)
-    {
+        public static Account getUser(int _usn)
+        {
             /*Method to get account formation for a certain user
-             * Create an account object to store data from the DB
-             * Open a connection into the DB and use the command query to get data
-             * Store data into the properties of the account object 
-             */
+            * Create an account object to store data from the DB
+            * Open a connection into the DB and use the command query to get data
+            * Store data into the properties of the account object 
+            */
 
             Account acct = new Account(); 
             using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
@@ -176,44 +172,43 @@ namespace ZooManagementSystemControl
                 }
                 return acct;
             }
-    }
+        }
 
         public static List<Task> getTasks(int _usn)
         {
 
-            /*Method to get task formation for a certain user
-             * Stores all task stuff into a List
-             * Create an task object to store data from the DB
-             * Once task is filled stored into tasklist object          
+            /* Retrieves task tuples associated with a user ID
+             * Stores all retrieved data into a Task object
+             * Created Task objects are pushed into a list          
              */
 
             List<Task> taskList = new List<Task>();
-                using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
+            using (var connection = new SQLiteConnection(@"Data Source = zManageDB.db"))
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand(connection))
                 {
-                    connection.Open();
-                    using (var command = new SQLiteCommand(connection))
+                    // query gets every currently assigned incomplete task for one employee
+                    string queryAcct = @"SELECT * FROM TASK WHERE (empID == $usn) and (completion != 1)";
+                    command.CommandText = queryAcct;
+                    command.Parameters.AddWithValue("$usn", _usn);
+                    using (var reader = command.ExecuteReader())
                     {
-                        // query gets every currently assigned incomplete task for one employee
-                        string queryAcct = @"SELECT * FROM TASK WHERE (empID == $usn) and (completion != 1)";
-                        command.CommandText = queryAcct;
-                        command.Parameters.AddWithValue("$usn", _usn);
-                        using (var reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                Task myTask = new Task();                               
-                                myTask.TaskID = reader.GetInt32(0);
-                                myTask.Date = reader.GetString(1);
-                                myTask.Completion = reader.GetBoolean(2);
-                                myTask.TaskType = reader.GetString(3);                                
-                                myTask.EmployeeID = reader.GetInt32(4);
-                                myTask.AnimalID = reader.GetInt32(5); 
-                                taskList.Add(myTask);                                
-                            }
+                            Task myTask = new Task();                               
+                            myTask.TaskID = reader.GetInt32(0);
+                            myTask.Date = reader.GetString(1);
+                            myTask.Completion = reader.GetBoolean(2);
+                            myTask.TaskType = reader.GetString(3);                                
+                            myTask.EmployeeID = reader.GetInt32(4);
+                            myTask.AnimalID = reader.GetInt32(5); 
+                            taskList.Add(myTask);                                
                         }
-                        connection.Close();
                     }
+                    connection.Close();
                 }
+            }
             return taskList;
         }
         public static void save(Task _task) 
@@ -347,7 +342,7 @@ namespace ZooManagementSystemControl
         {
             /* Method to create and show the loginform*/
             LoginForm loginform = new LoginForm();
-            Form.ActiveForm.Close();
+
             loginform.Show();
         }
         public static bool login(string _usn, string _pwd)

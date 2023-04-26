@@ -64,7 +64,7 @@
             this.btnLogout.TabIndex = 2;
             this.btnLogout.Text = "Return Home";
             this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.logout);
             // 
             // LogoutForm
             // 

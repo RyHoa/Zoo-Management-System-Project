@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartupMenu));
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.picZooLogo = new System.Windows.Forms.PictureBox();
             this.picZebra = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -40,13 +39,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picZebra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(749, 9);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(26, 443);
-            this.vScrollBar1.TabIndex = 1;
             // 
             // picZooLogo
             // 
@@ -79,7 +71,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.login);
             // 
             // label1
             // 
@@ -123,7 +115,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.picZebra);
             this.Controls.Add(this.picZooLogo);
-            this.Controls.Add(this.vScrollBar1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StartupMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -137,8 +128,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.PictureBox picZooLogo;
         private System.Windows.Forms.PictureBox picZebra;
         private System.Windows.Forms.Button button1;

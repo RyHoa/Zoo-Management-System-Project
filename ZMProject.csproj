@@ -76,37 +76,37 @@
     <Content Include=".git\ms-persist.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addTaskMenu.cs">
+    <Compile Include="Subsystems\Boundary\addTaskMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addTaskMenu.Designer.cs">
+    <Compile Include="Subsystems\Boundary\addTaskMenu.Designer.cs">
       <DependentUpon>addTaskMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="control subsystem.cs" />
-    <Compile Include="entity subsystem.cs" />
-    <Compile Include="UpdateMenu.cs">
+    <Compile Include="Subsystems\Control.cs" />
+    <Compile Include="Subsystems\Entity.cs" />
+    <Compile Include="Subsystems\Boundary\UpdateMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateMenu.Designer.cs">
+    <Compile Include="Subsystems\Boundary\UpdateMenu.Designer.cs">
       <DependentUpon>UpdateMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="Subsystems\Boundary\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="Subsystems\Boundary\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogoutForm.cs">
+    <Compile Include="Subsystems\Boundary\LogoutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogoutForm.Designer.cs">
+    <Compile Include="Subsystems\Boundary\LogoutForm.Designer.cs">
       <DependentUpon>LogoutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="StartupMenu.cs">
+    <Compile Include="Subsystems\Boundary\StartupMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartupMenu.Designer.cs">
+    <Compile Include="Subsystems\Boundary\StartupMenu.Designer.cs">
       <DependentUpon>StartupMenu.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -156,22 +156,22 @@
     <Folder Include=".vs\zoo-management-system-project\FileContentIndex\merges\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="addTaskMenu.en-US.resx">
+    <EmbeddedResource Include="Subsystems\Boundary\addTaskMenu.en-US.resx">
       <DependentUpon>addTaskMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addTaskMenu.resx">
+    <EmbeddedResource Include="Subsystems\Boundary\addTaskMenu.resx">
       <DependentUpon>addTaskMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateMenu.resx">
+    <EmbeddedResource Include="Subsystems\Boundary\UpdateMenu.resx">
       <DependentUpon>UpdateMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogoutForm.resx">
+    <EmbeddedResource Include="Subsystems\Boundary\LogoutForm.resx">
       <DependentUpon>LogoutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Subsystems\Boundary\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StartupMenu.resx">
+    <EmbeddedResource Include="Subsystems\Boundary\StartupMenu.resx">
       <DependentUpon>StartupMenu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

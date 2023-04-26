@@ -30,7 +30,7 @@ namespace ZooManagementSystemBoundary
 
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void logout(object sender, EventArgs e)
         {
             StartupMenu returnHome = new StartupMenu();    // create 
             this.Close();                     // close the logout form

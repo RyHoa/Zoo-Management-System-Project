@@ -114,7 +114,7 @@ namespace ZooManagementSystemBoundary
             comboAnID.ResetText();
             comboTaskType.ResetText();
         }
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void logout(object sender, EventArgs e)
         {
             // show logout page
 

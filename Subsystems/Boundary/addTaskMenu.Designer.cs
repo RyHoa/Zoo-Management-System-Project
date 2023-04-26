@@ -62,11 +62,7 @@
             this.comboAnID.FormattingEnabled = true;
             this.comboAnID.Items.AddRange(new object[] {
             "0001",
-            "0002",
-            "0003",
-            "0004",
-            "0005",
-            "0006"});
+            "0002"});
             this.comboAnID.Location = new System.Drawing.Point(174, 251);
             this.comboAnID.Name = "comboAnID";
             this.comboAnID.Size = new System.Drawing.Size(121, 21);
@@ -148,7 +144,7 @@
             this.btnLogout.TabIndex = 14;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.logout);
             // 
             // btnSubmitTask
             // 
